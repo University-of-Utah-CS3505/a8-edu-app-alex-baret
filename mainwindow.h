@@ -25,7 +25,7 @@ signals:
     void sendNewHeightValue(int height);
 public slots:
     void updateWorld();
-    void receiveNewHeightValue(float height);
+    void receiveNewHeightValue(float x, float height);
 public:
     b2World world;
     MainWindow(QWidget *parent = nullptr);

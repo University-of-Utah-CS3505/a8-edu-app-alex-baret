@@ -72,6 +72,7 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseReleaseEvent(event);
 
     std::cout << "event info: " << event->pos().y() << std::endl;
+    float x = event->pos().x();
     float height = event->pos().y();
-//    emit sendNewHeightSquare(height);
+    emit sendNewHeightSquare(x, height);
 }

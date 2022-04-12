@@ -10,10 +10,12 @@
 #include <QPixmap>
 
 
-class MySquare : public QGraphicsItem
+class MySquare : public QGraphicsObject
 {
+    Q_OBJECT
+
 signals:
-    void sendNewHeightSquare(float height);
+    void sendNewHeightSquare(float x, float height);
 public:
     MySquare();
 

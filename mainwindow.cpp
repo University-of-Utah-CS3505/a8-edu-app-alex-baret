@@ -98,13 +98,13 @@ MainWindow::MainWindow(QWidget *parent)
                &QTimer::timeout,
                this,
                &MainWindow::updateWorld);
-       timer->start(1);
+       timer->start(10);
 
-//       //connect call from signal to slot
-//       connect(square, //connects blue push button to update Model's bluePress slot
-//                   &MySquare::sendNewHeightSquare,
-//                   this,
-//                   &MainWindow::receiveNewHeightValue);
+   //connect call from signal to slot
+   connect(square, //connects blue push button to update Model's bluePress slot
+               &MySquare::sendNewHeightSquare,
+               this,
+               &MainWindow::receiveNewHeightValue);
 
 }
 
@@ -127,7 +127,7 @@ void MainWindow::updateWorld(){
     float32 angle = body->GetAngle();
 
     if(body->GetLinearVelocity().y < 0){ //when it reaches the ground it has a linear velocity of zero
-        emit sendNewHeightValue(position.y*75); //emit the new y value of the body
+        emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
 
         square->setPos(position.x*75, -position.y*75); //updating the QGraphicsItem to have the bodies' properties
         pic->setPos(100 + (position.x*75), -position.y*75); //updating the QPixmapItem to have the bodies' properties
@@ -136,9 +136,9 @@ void MainWindow::updateWorld(){
 
     }
     else{
-        std::cout << "stopped" << std::endl;
+        //std::cout << "stopped" << std::endl;
         body->SetLinearVelocity(b2Vec2(0,0));
-        timer->stop();
+        //timer->stop();
     }
 }
 
@@ -147,12 +147,12 @@ void MainWindow::updateWorld(){
  * @brief MainWindow::receiveNewHeightValue
  * @param height
  */
-void MainWindow::receiveNewHeightValue(float height)
+void MainWindow::receiveNewHeightValue(float x, float height)
 {
-    std::cout << "got the new y" << std::endl;
-    b2BodyDef bodyDefNew;
-    bodyDefNew.type = b2_dynamicBody;
-    bodyDefNew.position.Set(0.0f, (float)height);
-    body = world.CreateBody(&bodyDefNew);
+    std::cout << height << std::endl;
+    b2Vec2 newPos(x/5, height/10);
+    b2Vec2 fakeGravity(0.0f, -5.0f);          // the real gravity set in startup is never used so im doing this for now
+    body->SetTransform(newPos, body->GetAngle());
+    body->SetLinearVelocity(fakeGravity);
 }
 
