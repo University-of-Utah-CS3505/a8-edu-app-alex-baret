@@ -9,6 +9,7 @@
 MySquare::MySquare()
 {
     pressed = false;
+    marioImage.load(":/images/mario.png");
 }
 
 /**
@@ -37,14 +38,13 @@ void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     {
         brush.setColor(Qt::red);
         setFlag(GraphicsItemFlag::ItemIsMovable,true);
+        painter->drawPixmap(0,0,125,100,marioImage);
     }
     else{
-        brush.setColor(Qt::green);
+        painter->drawPixmap(0,0,125,100,marioImage);
     }
-    painter->fillRect(rec,brush);
-    painter->drawRect(rec);
-
-
+//    painter->fillRect(rec,brush);
+//    painter->drawRect(rec);
 
 }
 
