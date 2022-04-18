@@ -3,10 +3,18 @@
 #include <iostream>
 
 
-MainWindow::MainWindow(QWidget *parent)
+/**
+ * Constructor for the "view" object in Model-View architecture.  Contains setup for all graphics items, graphics scene, and a basic Box2D body (to be updated, will not consist of only one dynamicBody).
+ * @brief MainWindow::MainWindow
+ * @param parent
+ */
+MainWindow::MainWindow(Model& model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) , world(b2Vec2(0.0f, -10.f))
 {
+    //setting the model
+    mainModel = &model;
+
     // ======== View setup (Qt) ======== //
     ui->setupUi(this);
 
@@ -22,11 +30,11 @@ MainWindow::MainWindow(QWidget *parent)
     rectangle->setFlag(QGraphicsItem::ItemIsMovable);
 
     //custom item (creation and addition to scene)
-    square = new MySquare(":/images/mario.png");
+    square = mainModel->treatments.at("mario"); //adding mario
     scene->addItem(square);
 
     //addition of other square
-    otherSquare = new MySquare(":/images/luigi");
+    otherSquare = mainModel->treatments.at("luigi");
     scene->addItem(otherSquare);
 
     // ======== Box2D initial settings ======== //

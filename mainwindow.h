@@ -12,6 +12,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsEllipseItem>
 #include "mysquare.h"
+#include "model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,10 +29,11 @@ public slots:
     void receiveNewHeightValue(float x, float height);
 public:
     b2World world;
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
+    Model *mainModel;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsEllipseItem *ellipse;

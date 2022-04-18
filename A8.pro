@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     main.cpp \
     mainwindow.cpp \
+    model.cpp \
     mysquare.cpp
 
 HEADERS += \
@@ -108,6 +109,7 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     mainwindow.h \
+    model.h \
     mysquare.h
 
 FORMS += \
