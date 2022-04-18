@@ -6,11 +6,12 @@
  * Constructor for custom item.
  * @brief MySquare::MySquare
  */
-MySquare::MySquare(std::string imagePath)
+MySquare::MySquare(std::string imagePath, std::string name)
 {
     pressed = false;
     QString QImagePath =  QString::fromStdString(imagePath); //converts image path to QString
     image.load(QImagePath); //loads QString image path to this square's pixmap
+    this->name = name;
 }
 
 /**
@@ -65,6 +66,6 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     std::cout << "event info: " << event->pos().y() << std::endl;
     float x = event->pos().x();
     float height = event->pos().y();
+    emit detectCollision(this->name);
     emit sendNewHeightSquare(x, height);
-
 }

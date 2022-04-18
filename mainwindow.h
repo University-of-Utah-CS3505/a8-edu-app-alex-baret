@@ -27,6 +27,7 @@ signals:
 public slots:
     void updateWorld();
     void receiveNewHeightValue(float x, float height);
+
 public:
     b2World world;
     MainWindow(Model& model, QWidget *parent = nullptr);
@@ -38,8 +39,15 @@ private:
     QGraphicsScene *scene;
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
+
+    //treatments (characters for now)
+    std::vector<MySquare *> treatments;
     MySquare *square;
     MySquare *otherSquare;
+    MySquare *toadSquare;
+    MySquare *peachSquare;
+
+
     QGraphicsPixmapItem *pic;
     QTimer *timer;
     b2Body* body;

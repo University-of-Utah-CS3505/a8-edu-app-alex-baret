@@ -16,13 +16,15 @@ class MySquare : public QGraphicsObject
 
 signals:
     void sendNewHeightSquare(float x, float height);
+    void detectCollision(std::string name);
 public:
-    MySquare(std::string imagePath);
+    MySquare(std::string imagePath, std::string name);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPixmap image;
     bool pressed;
+    std::string name;
 
 
 protected:

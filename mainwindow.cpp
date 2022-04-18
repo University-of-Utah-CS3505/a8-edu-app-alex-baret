@@ -29,13 +29,25 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     rectangle = scene->addRect(-100,-100,50,50, blackPen, blueBrush);
     rectangle->setFlag(QGraphicsItem::ItemIsMovable);
 
-    //custom item (creation and addition to scene)
+    //custom item (creation and addition to scene, this is mario)
+    treatments.push_back(mainModel->treatments.at("mario")); //adding square to mainwindow's graphic vector
     square = mainModel->treatments.at("mario"); //adding mario
     scene->addItem(square);
 
-    //addition of other square
+    //addition of other square(luigi)
+    treatments.push_back(mainModel->treatments.at("luigi"));
     otherSquare = mainModel->treatments.at("luigi");
     scene->addItem(otherSquare);
+
+    //addition of another other square(toad)
+    treatments.push_back(mainModel->treatments.at("toad"));
+    toadSquare = mainModel->treatments.at("toad");
+    scene->addItem(toadSquare);
+
+    //addition of another other square(toad)
+    treatments.push_back(mainModel->treatments.at("peach"));
+    peachSquare = mainModel->treatments.at("peach");
+    scene->addItem(peachSquare);
 
     // ======== Box2D initial settings ======== //
 
@@ -90,7 +102,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // ======== Connections between signals and slots ======== //
 
     //connect call from signal to slot
-    connect(this, //connects blue push button to update Model's bluePress slot
+    connect(this, //connects ??
                 &MainWindow::sendNewHeightValue,
                 ui->verticalSlider,
                 &QSlider::setValue);
@@ -104,11 +116,18 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
        timer->start(10);
 
    //connect call from signal to slot
-   connect(square, //connects blue push button to update Model's bluePress slot
+   connect(square, //connects ??
                &MySquare::sendNewHeightSquare,
                this,
                &MainWindow::receiveNewHeightValue);
 
+    //adding collision detection for each treatment
+   for ( auto treatment : treatments) {
+       connect(treatment, //connects initial collision detection signal from the caller to the slot in model
+                   &MySquare::detectCollision,
+                   mainModel,
+                   &Model::collisionDetectionFromCaller);
+   }
 }
 
 MainWindow::~MainWindow()
