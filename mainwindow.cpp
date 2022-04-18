@@ -171,7 +171,7 @@ void MainWindow::updateWorld(){
 void MainWindow::receiveNewHeightValue(float x, float height)
 {
     std::cout << height << std::endl;
-    b2Vec2 newPos(x/5, height/10);
+    b2Vec2 newPos(x/75, -height/75);
     b2Vec2 fakeGravity(0.0f, -5.0f);          // the real gravity set in startup is never used so im doing this for now
     body->SetTransform(newPos, body->GetAngle());
     body->SetLinearVelocity(fakeGravity);

@@ -39,7 +39,7 @@ treatments.insert(peach); //adding peach
  */
 void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 {
-    std::cout << "in collision detection" << std::endl;
+    //std::cout << "in collision detection" << std::endl;
     bool collision = treatments.at(nameOfCaller)->collidesWithItem(treatments.at("luigi"));
     if (collision){
         std::cout << nameOfCaller << " collided with luigi" << std::endl;
