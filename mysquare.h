@@ -17,11 +17,11 @@ class MySquare : public QGraphicsObject
 signals:
     void sendNewHeightSquare(float x, float height);
 public:
-    MySquare();
+    MySquare(std::string imagePath);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPixmap marioImage;
+    QPixmap image;
     bool pressed;
 
 

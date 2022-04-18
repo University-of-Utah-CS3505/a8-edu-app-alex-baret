@@ -37,6 +37,7 @@ private:
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
     MySquare *square;
+    MySquare *otherSquare;
     QGraphicsPixmapItem *pic;
     QTimer *timer;
     b2Body* body;

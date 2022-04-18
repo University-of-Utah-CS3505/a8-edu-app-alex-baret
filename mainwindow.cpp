@@ -18,21 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     QPen blackPen(Qt::black);
     blackPen.setWidth(6);
 
-    ellipse = scene->addEllipse(10,10,100,100, blackPen, redBrush);
     rectangle = scene->addRect(-100,-100,50,50, blackPen, blueBrush);
     rectangle->setFlag(QGraphicsItem::ItemIsMovable);
 
-    //pixmap item (creation and addition to scene)
-    QImage mario;
-    mario.load(":/images/mario.png");
-    QPixmap marioMap = QPixmap::fromImage(mario); //setting image to pixmap
-    pic = new QGraphicsPixmapItem(); //new item
-    pic->setPixmap(marioMap.scaled(250,200)); //setting image
-    scene->addItem(pic);
-
     //custom item (creation and addition to scene)
-    square = new MySquare();
+    square = new MySquare(":/images/mario.png");
     scene->addItem(square);
+
+    //addition of other square
+    otherSquare = new MySquare(":/images/luigi");
+    scene->addItem(otherSquare);
 
     // ======== Box2D initial settings ======== //
 
@@ -130,7 +125,6 @@ void MainWindow::updateWorld(){
         emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
 
         square->setPos(position.x*75, -position.y*75); //updating the QGraphicsItem to have the bodies' properties
-        pic->setPos(100 + (position.x*75), -position.y*75); //updating the QPixmapItem to have the bodies' properties
 
         printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
@@ -155,4 +149,6 @@ void MainWindow::receiveNewHeightValue(float x, float height)
     body->SetTransform(newPos, body->GetAngle());
     body->SetLinearVelocity(fakeGravity);
 }
+
+
 

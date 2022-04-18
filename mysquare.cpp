@@ -6,10 +6,11 @@
  * Constructor for custom item.
  * @brief MySquare::MySquare
  */
-MySquare::MySquare()
+MySquare::MySquare(std::string imagePath)
 {
     pressed = false;
-    marioImage.load(":/images/mario.png");
+    QString QImagePath =  QString::fromStdString(imagePath); //converts image path to QString
+    image.load(QImagePath); //loads QString image path to this square's pixmap
 }
 
 /**
@@ -31,21 +32,11 @@ QRectF MySquare::boundingRect() const
  */
 void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QRectF rec = boundingRect();
-    QBrush brush (Qt::blue);
-
+    painter->drawPixmap(0,0,125,100,image);
     if(pressed)
     {
-        brush.setColor(Qt::red);
         setFlag(GraphicsItemFlag::ItemIsMovable,true);
-        painter->drawPixmap(0,0,125,100,marioImage);
     }
-    else{
-        painter->drawPixmap(0,0,125,100,marioImage);
-    }
-//    painter->fillRect(rec,brush);
-//    painter->drawRect(rec);
-
 }
 
 /**
@@ -75,4 +66,5 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     float x = event->pos().x();
     float height = event->pos().y();
     emit sendNewHeightSquare(x, height);
+
 }
