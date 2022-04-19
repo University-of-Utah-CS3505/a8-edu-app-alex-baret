@@ -15,7 +15,7 @@ class MySquare : public QGraphicsObject
     Q_OBJECT
 
 signals:
-    void sendNewHeightSquare(float x, float height);
+    void sendNewHeightSquare(float x, float height , std::string name);
     void detectCollision(std::string name);
 public:
     MySquare(std::string imagePath, std::string name);

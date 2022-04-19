@@ -67,5 +67,5 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     float x = this->x();
     float height = this->y();
     emit detectCollision(this->name);
-    emit sendNewHeightSquare(x, height);
+    emit sendNewHeightSquare(x, height , name);
 }

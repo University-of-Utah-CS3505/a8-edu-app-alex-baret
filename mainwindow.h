@@ -26,12 +26,13 @@ signals:
     void sendNewHeightValue(int height);
 public slots:
     void updateWorld();
-    void receiveNewHeightValue(float x, float height);
+    void receiveNewHeightValue(float x, float height, std::string name);
 
 public:
     b2World world;
     MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
+    void createTreatment(std::string name, std::string imageLoc, float xLoc, float yLoc);
 
 private:
     Model *mainModel;
@@ -40,17 +41,8 @@ private:
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
 
-    //treatments (characters for now)
-    std::vector<MySquare *> treatments;
-    MySquare *square;
-    MySquare *otherSquare;
-    MySquare *toadSquare;
-    MySquare *peachSquare;
-
-
     QGraphicsPixmapItem *pic;
     QTimer *timer;
-    b2Body* body;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
