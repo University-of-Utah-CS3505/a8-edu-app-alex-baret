@@ -5,4 +5,21 @@
         <file>toad</file>
         <file>peach</file>
     </qresource>
+    <qresource prefix="/medicines">
+        <file>acetaminophen.png</file>
+        <file>allergy.png</file>
+        <file>aloe-vera.png</file>
+        <file>bandage.png</file>
+        <file>band-aid.png</file>
+        <file>cold-pack.png</file>
+        <file>cough-drops.png</file>
+        <file>hot-pack.png</file>
+        <file>hydrogen-peroxide.png</file>
+        <file>ibuprofen.png</file>
+        <file>level-small-bg.png</file>
+        <file>nasel-spray.png</file>
+        <file>neosporin.png</file>
+        <file>pepto-bismol.png</file>
+        <file>water.png</file>
+    </qresource>
 </RCC>
