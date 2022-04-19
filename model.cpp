@@ -1,5 +1,11 @@
 #include "model.h"
+#include "level.h"
 #include <iostream>
+#include <QPixmap>
+#include <string>
+#include <vector>
+
+using namespace std;
 
 /**
  * Constructor for model.
@@ -30,6 +36,17 @@ treatments.insert(luigi); //adding luigi
 treatments.insert(toad); //adding toad
 treatments.insert(peach); //adding peach
 
+//=== loading levels ===//
+vector<string> L1Lessons = {"Education about antibiotic medication", "Teaches other cleaning methods"};
+vector<string> L1Treatments = {"luigi", "mario", "peach"};
+vector<string> L1Symptoms = {"No symptoms"};
+
+QPixmap scraped2;
+QPixmap scraped1;
+QPixmap scraped0;
+
+vector<QPixmap> L1Stages = {scraped2, scraped1, scraped0};
+Level* lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
 }
 
 /**
