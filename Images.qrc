@@ -21,5 +21,6 @@
         <file>neosporin.png</file>
         <file>pepto-bismol.png</file>
         <file>water.png</file>
+        <file>background</file>
     </qresource>
 </RCC>
