@@ -25,7 +25,7 @@ public:
     QPixmap image;
     bool pressed;
     std::string name;
-
+    bool canMove = true;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

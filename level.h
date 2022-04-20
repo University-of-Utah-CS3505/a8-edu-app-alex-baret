@@ -13,7 +13,6 @@ class Level
 public:
     Level(string _title, vector<string> _lesson, vector<string> _validTreatments,
           vector<string> _symptoms, vector<QPixmap> _patientStages, bool _inOrder);
-private:
     string title;
     vector<string> lesson;
     vector<string> validTreatments; //ordered

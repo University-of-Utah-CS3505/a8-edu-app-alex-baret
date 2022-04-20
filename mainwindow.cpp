@@ -29,7 +29,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     rectangle = scene->addRect(-100,-100,50,50, blackPen, blueBrush);
     rectangle->setFlag(QGraphicsItem::ItemIsMovable);
 
-    // ======== Create all 'treatments' ======== //
+    // ======== Create all inital 'treatments' ======== //
 
       createTreatment("mario" , ":/images/mario.png", 0.0f, 5.0f);
       createTreatment("luigi",":/images/luigi" , 0.0f, 5.0f);
@@ -94,6 +94,9 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                    mainModel,
                    &Model::collisionDetectionFromCaller);
    }
+
+    mainModel->loadLevel(mainModel->lvl1);
+
 }
 
 MainWindow::~MainWindow()
@@ -182,7 +185,7 @@ void MainWindow::updateWorld(){
        b2Vec2 position = it->second->GetPosition();
        float32 angle = it->second->GetAngle();
 
-       if(it->second->GetLinearVelocity().y < 0){ //when it reaches the ground it has a linear velocity of zero
+       if(it->second->GetLinearVelocity().y < 0 &&  mainModel->treatments.at(it->first)->canMove){ //when it reaches the ground it has a linear velocity of zero
            emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
 
            mainModel->treatments.at(it->first)->setPos(position.x*75, -position.y*75); //updating the QGraphicsItem to have the bodies' properties
@@ -196,8 +199,6 @@ void MainWindow::updateWorld(){
            //timer->stop();
        }
    }
-
-
 }
 
 

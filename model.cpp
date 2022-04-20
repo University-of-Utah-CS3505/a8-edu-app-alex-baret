@@ -27,7 +27,8 @@ QPixmap scraped1;
 QPixmap scraped0;
 
 vector<QPixmap> L1Stages = {scraped2, scraped1, scraped0};
-Level* lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
+lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
+
 }
 
 /**
@@ -37,10 +38,18 @@ Level* lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, 
  */
 void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 {
-    //std::cout << "in collision detection" << std::endl;
     bool collision = treatments.at(nameOfCaller)->collidesWithItem(treatments.at("luigi"));
     if (collision){
         std::cout << nameOfCaller << " collided with luigi" << std::endl;
     }
 
+}
+
+void Model::loadLevel(Level* level){
+    //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
+    for(auto it = level->validTreatments.begin(); it != level->validTreatments.end(); ++it){
+        std::string name = *it;
+        treatments.at(name)->canMove = false;
+    }
+    //do other stuff
 }
