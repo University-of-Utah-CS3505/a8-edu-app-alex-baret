@@ -73,7 +73,7 @@ background: transparent;</string>
      </rect>
     </property>
     <property name="text">
-     <string>Mario</string>
+     <string>Ibuprofen</string>
     </property>
     <property name="autoExclusive">
      <bool>false</bool>
@@ -84,12 +84,12 @@ background: transparent;</string>
      <rect>
       <x>30</x>
       <y>130</y>
-      <width>99</width>
+      <width>141</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Luigi</string>
+     <string>Hydrogen Peroxide</string>
     </property>
     <property name="autoExclusive">
      <bool>false</bool>
@@ -105,7 +105,7 @@ background: transparent;</string>
      </rect>
     </property>
     <property name="text">
-     <string>Peach</string>
+     <string>Band Aid</string>
     </property>
     <property name="autoExclusive">
      <bool>false</bool>
@@ -121,7 +121,7 @@ background: transparent;</string>
      </rect>
     </property>
     <property name="text">
-     <string>Toad</string>
+     <string>Neosporin</string>
     </property>
     <property name="autoExclusive">
      <bool>false</bool>

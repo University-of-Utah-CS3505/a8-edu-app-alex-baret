@@ -235,25 +235,25 @@ void MainWindow::receiveNewHeightValue(float x, float height, std::string name)
 
 void MainWindow::on_toggleCanDrop_clicked()
 {
-//   if(ui->marioButton->isChecked()){
-//       mainModel->setTreatmentCanDrop("mario" , true);
-//   }else{
-//       mainModel->setTreatmentCanDrop("mario" , false);
-//   }
-//   if(ui->luigiButton->isChecked()){
-//       mainModel->setTreatmentCanDrop("luigi" , true);
-//   }else{
-//       mainModel->setTreatmentCanDrop("luigi" , false);
-//   }
-//   if(ui->peachButton->isChecked()){
-//       mainModel->setTreatmentCanDrop("peach" , true);
-//   }else{
-//       mainModel->setTreatmentCanDrop("peach" , false);
-//   }
-//   if(ui->toadButton->isChecked()){
-//       mainModel->setTreatmentCanDrop("toad", true);
-//   }else{
-//       mainModel->setTreatmentCanDrop("toad", false);
-//   }
+    if(ui->marioButton->isChecked()){
+        mainModel->setTreatmentCanDrop("ibuprofen" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("ibuprofen" , false);
+    }
+    if(ui->luigiButton->isChecked()){
+        mainModel->setTreatmentCanDrop("hyrdogenPerxoide" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("hyrdogenPerxoide" , false);
+    }
+    if(ui->peachButton->isChecked()){
+        mainModel->setTreatmentCanDrop("bandAid" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("bandAid" , false);
+    }
+    if(ui->toadButton->isChecked()){
+        mainModel->setTreatmentCanDrop("neosporin", true);
+    }else{
+        mainModel->setTreatmentCanDrop("neosporin", false);
+    }
 }
 
