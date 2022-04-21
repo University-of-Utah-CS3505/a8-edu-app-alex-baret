@@ -21,6 +21,15 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     scene = new QGraphicsScene(this); //creating a new scene
     ui->graphicsView->setScene(scene); //setting the scene of the graphics view
 
+//    ui->graphicsView->setSceneRect(0,0,1000,1000);
+
+    //background image setup
+    QString QImagePath =  ":/medicines/background";
+    image.load(QImagePath);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, image.scaled(this->width(), this->height()));
+    setPalette(palette);
+
     QBrush redBrush(Qt::red);
     QBrush blueBrush(Qt::blue);
     QPen blackPen(Qt::black);
