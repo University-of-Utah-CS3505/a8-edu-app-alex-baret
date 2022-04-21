@@ -12,9 +12,12 @@ class Model : public QObject
 public:
     explicit Model(QObject *parent = nullptr);
     std::map<std::string, MySquare*> treatments; //string is name of the treatment and MySquare pointer is a pointer for the actual custom graphics view object to be added in model constructor
-    std::map<std::string, b2Body* > treatmentBodies;
+    std::pair<b2Body* , std::string> currentTreatment;
+
 
     Level* lvl1;
+
+    void setTreatmentCanDrop(std::string name, bool canDrop);
 
 public slots:
     void collisionDetectionFromCaller(std::string nameOfCaller);

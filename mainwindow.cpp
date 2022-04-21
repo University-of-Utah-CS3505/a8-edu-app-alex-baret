@@ -40,11 +40,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     // ======== Create all inital 'treatments' ======== //
 
-      createTreatment("mario" , ":/images/mario.png", 0.0f, 5.0f);
-      createTreatment("luigi",":/images/luigi" , 0.0f, 5.0f);
-      createTreatment("toad" , ":/images/toad" , 0.0f, 5.0f);
-      createTreatment("peach", ":/images/peach" , 0.0f, 5.0f);
-
+      createTreatment("ibuprofen" , ":/medicines/ibuprofen.png");
+      createTreatment("hyrdogenPerxoide",":/medicines/hydrogen-peroxide.png" );
+      createTreatment("bandAid" , ":/medicines/band-aid.png");
+      createTreatment("neosporin", ":/medicines/neosporin.png");
 
     // ======== Box2D initial settings ======== //
 
@@ -69,6 +68,44 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
 
+    // ======== b2Body Set up ======== //
+
+    // Define the dynamic body. We set its position and call the body factory.
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(0.0f, 5.0f); // set initial positions
+
+    body = world.CreateBody(&bodyDef);
+
+    body->SetSleepingAllowed(true);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox(1.0f, 1.0f);
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 1.0f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
+
+    //set restitution (bounciness)
+    fixtureDef.restitution = 0.9f;
+
+    //set its inital velocity to 0
+    body->SetLinearVelocity(b2Vec2(0,0));
+
+    // Add the shape to the body.
+    body->CreateFixture(&fixtureDef);
+
+    //add the body two the mainModel and map it to 'empty' since nothing has been clicked yet
+    mainModel->currentTreatment.first = body;
+    mainModel->currentTreatment.second = "empty";
+
     // ======== Connections between signals and slots ======== //
 
     //connect call from signal to slot
@@ -88,8 +125,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     //loop through the 'treatments' from main model, i.e mySquare objects,
     //and connect the singal with slot in mainwindow to move update the object's positions when they're moved
+
+
     for ( auto treatment : mainModel->treatments) {
-       connect(treatment.second, //connects ??
+       connect(treatment.second,
                &MySquare::sendNewHeightSquare,
                this,
                &MainWindow::receiveNewHeightValue);
@@ -104,6 +143,11 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                    &Model::collisionDetectionFromCaller);
    }
 
+    connect(ui->toggleCanDrop,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::on_toggleCanDrop_clicked);
+
     mainModel->loadLevel(mainModel->lvl1);
 
 }
@@ -114,9 +158,7 @@ MainWindow::~MainWindow()
 }
 
 /**
-* Creates a new treatment by first creating a MySquare object that holds the image that represents this treatment. Then,
-* this function creates a box 2d body for the MySquare. Finally, the function maps the given name to its corresponding
-* MySquare and b2Body objects in the main model.
+* Creates a new treatment by creating a MySquare object that holds the image that represents this treatment.
 *
 * @brief MainWindow::createTreatment
 * @param name - the name of the treatment object to be created
@@ -124,7 +166,7 @@ MainWindow::~MainWindow()
 * @param xLoc - the x coordinate of the inital position of the new treatment object
 * @param yLoc - the y coordinate of the inital position of the new treatment object
 */
-void MainWindow::createTreatment(std::string name , std::string imageLoc, float xLoc, float yLoc)
+void MainWindow::createTreatment(std::string name , std::string imageLoc)
 {
    //create a 'MySquare' object to represent a QGraphics object that can hold an image
    MySquare *newTreatment = new MySquare(imageLoc, name);
@@ -137,42 +179,6 @@ void MainWindow::createTreatment(std::string name , std::string imageLoc, float 
 
    //add the new graphics object to the scene
    scene->addItem(newTreatment);
-
-   //set up a box 2d body for the new treatment
-   b2Body* newBody;
-
-   // Define the dynamic body. We set its position and call the body factory.
-   b2BodyDef bodyDef;
-   bodyDef.type = b2_dynamicBody;
-   bodyDef.position.Set(xLoc, yLoc); // set initial positions
-
-   newBody = world.CreateBody(&bodyDef);
-
-   newBody->SetSleepingAllowed(true);
-
-   // Define another box shape for our dynamic body.
-   b2PolygonShape dynamicBox;
-   dynamicBox.SetAsBox(1.0f, 1.0f);
-
-   // Define the dynamic body fixture.
-   b2FixtureDef fixtureDef;
-   fixtureDef.shape = &dynamicBox;
-
-   // Set the box density to be non-zero, so it will be dynamic.
-   fixtureDef.density = 1.0f;
-
-   // Override the default friction.
-   fixtureDef.friction = 0.3f;
-
-   //set restitution (bounciness)
-   fixtureDef.restitution = 0.9f;
-
-   // Add the shape to the body.
-   newBody->CreateFixture(&fixtureDef);
-
-   //add the pair: name, b2Body*, to the map of treatment bodies in main model
-   std::pair <std::string,b2Body *> box2DPair (name, newBody);
-   mainModel->treatmentBodies.insert(box2DPair);
 }
 
 
@@ -187,26 +193,22 @@ void MainWindow::updateWorld(){
    // It is generally best to keep the time step and iterations fixed.
    world.Step(timeStep, velocityIterations, positionIterations);
 
-   //iterator through the map of treatmentBodies to check to see if they have been moved
-   //NOTE: it->first is the string 'name' that maps to it->second which is the actual b2Body*
-   for(auto it = mainModel->treatmentBodies.begin(); it !=mainModel->treatmentBodies.end(); ++it){
+   //when it reaches the ground it has a linear velocity of zero; do not try to update position if there isn't a selected treatment yet
+   if(body->GetLinearVelocity().y < 0 && mainModel->currentTreatment.second != "empty"){
 
-       b2Vec2 position = it->second->GetPosition();
-       float32 angle = it->second->GetAngle();
+       for(auto it = mainModel->lvl1->validTreatments.begin(); it != mainModel->lvl1->validTreatments.end(); ++it){
+           if(mainModel->treatments.at(mainModel->currentTreatment.second)->canDrop){
 
-       if(it->second->GetLinearVelocity().y < 0 &&  mainModel->treatments.at(it->first)->canMove){ //when it reaches the ground it has a linear velocity of zero
-           emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
+               b2Vec2 position = body->GetPosition();
+               emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
+               //updating the QGraphicsItem to have the bodies' properties
+               mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
 
-           mainModel->treatments.at(it->first)->setPos(position.x*75, -position.y*75); //updating the QGraphicsItem to have the bodies' properties
-
-           printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
-
+           }
        }
-       else{
-           //std::cout << "stopped" << std::endl;
-           it->second->SetLinearVelocity(b2Vec2(0,0));
-           //timer->stop();
-       }
+   }
+   else{
+       body->SetLinearVelocity(b2Vec2(0,0));
    }
 }
 
@@ -218,12 +220,40 @@ void MainWindow::updateWorld(){
  */
 void MainWindow::receiveNewHeightValue(float x, float height, std::string name)
 {
-    std::cout << height << std::endl;
+    //set the box2D body to assoiciate with the 'treatment' that was clicked on
+    mainModel->currentTreatment.second = name;
+
     b2Vec2 newPos(x/75, -height/75);
-    b2Vec2 fakeGravity(0.0f, -5.0f);          // the real gravity set in startup is never used so im doing this for now
-    mainModel->treatmentBodies.at(name)->SetTransform(newPos, mainModel->treatmentBodies.at(name)->GetAngle());
-    mainModel->treatmentBodies.at(name)->SetLinearVelocity(fakeGravity);
+    // the real gravity set in startup is never used so im doing this for now
+    b2Vec2 fakeGravity(0.0f, -5.0f);
+
+    body->SetTransform(newPos, body->GetAngle());
+    body->SetLinearVelocity(fakeGravity);
 }
 
 
+
+void MainWindow::on_toggleCanDrop_clicked()
+{
+//   if(ui->marioButton->isChecked()){
+//       mainModel->setTreatmentCanDrop("mario" , true);
+//   }else{
+//       mainModel->setTreatmentCanDrop("mario" , false);
+//   }
+//   if(ui->luigiButton->isChecked()){
+//       mainModel->setTreatmentCanDrop("luigi" , true);
+//   }else{
+//       mainModel->setTreatmentCanDrop("luigi" , false);
+//   }
+//   if(ui->peachButton->isChecked()){
+//       mainModel->setTreatmentCanDrop("peach" , true);
+//   }else{
+//       mainModel->setTreatmentCanDrop("peach" , false);
+//   }
+//   if(ui->toadButton->isChecked()){
+//       mainModel->setTreatmentCanDrop("toad", true);
+//   }else{
+//       mainModel->setTreatmentCanDrop("toad", false);
+//   }
+}
 

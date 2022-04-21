@@ -33,7 +33,7 @@ QRectF MySquare::boundingRect() const
  */
 void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(0,0,125,100,image);
+    painter->drawPixmap(0,0,62,50,image);
     if(pressed)
     {
         setFlag(GraphicsItemFlag::ItemIsMovable,true);

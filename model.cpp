@@ -19,7 +19,7 @@ Model::Model(QObject *parent)
 
 //=== loading levels ===//
 vector<string> L1Lessons = {"Education about antibiotic medication", "Teaches other cleaning methods"};
-vector<string> L1Treatments = {"luigi", "mario", "peach"};
+vector<string> L1Treatments = {"hyrdogenPerxoide", "neosporin", "bandAid"};
 vector<string> L1Symptoms = {"No symptoms"};
 
 QPixmap scraped2;
@@ -38,7 +38,7 @@ lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stage
  */
 void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 {
-    bool collision = treatments.at(nameOfCaller)->collidesWithItem(treatments.at("luigi"));
+    bool collision = treatments.at(nameOfCaller)->collidesWithItem(treatments.at("neosporin"));
     if (collision){
         std::cout << nameOfCaller << " collided with luigi" << std::endl;
     }
@@ -48,8 +48,11 @@ void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 void Model::loadLevel(Level* level){
     //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
     for(auto it = level->validTreatments.begin(); it != level->validTreatments.end(); ++it){
-        std::string name = *it;
-        treatments.at(name)->canMove = false;
+        setTreatmentCanDrop(it->data() , false);
     }
     //do other stuff
+}
+
+void Model::setTreatmentCanDrop(std::string name, bool canDrop){
+    treatments.at(name)->canDrop = canDrop;
 }
