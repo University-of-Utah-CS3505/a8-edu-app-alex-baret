@@ -13,6 +13,7 @@
 #include <QGraphicsEllipseItem>
 #include "mysquare.h"
 #include "model.h"
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,7 +33,12 @@ public:
     b2World world;
     MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
-    void createTreatment(std::string name, std::string imageLoc, float xLoc, float yLoc);
+    void createTreatment(std::string name, std::string imageLoc);
+
+private slots:
+
+
+    void on_toggleCanDrop_clicked();
 
 private:
     Model *mainModel;
@@ -40,6 +46,8 @@ private:
     QGraphicsScene *scene;
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
+
+    b2Body *body;
 
     QGraphicsPixmapItem *pic;
     QTimer *timer;
@@ -51,6 +59,7 @@ private:
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
 
+    void toggleTreatmentCanDrop(bool checked);
 
 };
 #endif // MAINWINDOW_H
