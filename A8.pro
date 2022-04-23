@@ -59,7 +59,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
-    mysquare.cpp
+    mysquare.cpp \
+    patient.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -112,7 +113,8 @@ HEADERS += \
     level.h \
     mainwindow.h \
     model.h \
-    mysquare.h
+    mysquare.h \
+    patient.h
 
 FORMS += \
     mainwindow.ui

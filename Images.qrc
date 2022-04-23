@@ -4,6 +4,7 @@
         <file>luigi</file>
         <file>toad</file>
         <file>peach</file>
+        <file>ross king.jpg</file>
     </qresource>
     <qresource prefix="/medicines">
         <file>acetaminophen.png</file>

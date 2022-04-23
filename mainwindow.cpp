@@ -40,10 +40,15 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     // ======== Create all inital 'treatments' ======== //
 
+      createPatient("scraped", ":/images/ross king.jpg");
+
+    // ======== Create all inital 'treatments' ======== //
+
       createTreatment("ibuprofen" , ":/medicines/ibuprofen.png");
       createTreatment("hyrdogenPerxoide",":/medicines/hydrogen-peroxide.png" );
       createTreatment("bandAid" , ":/medicines/band-aid.png");
       createTreatment("neosporin", ":/medicines/neosporin.png");
+
 
     // ======== Box2D initial settings ======== //
 
@@ -181,6 +186,26 @@ void MainWindow::createTreatment(std::string name , std::string imageLoc)
    scene->addItem(newTreatment);
 }
 
+/**
+* Creates a new treatment by creating a MySquare object that holds the image that represents this treatment.
+*
+* @brief MainWindow::createTreatment
+* @param name - the name of the treatment object to be created
+* @param imageLoc - the location of where the image you want to be show for the object is
+* @param xLoc - the x coordinate of the inital position of the new treatment object
+* @param yLoc - the y coordinate of the inital position of the new treatment object
+*/
+void MainWindow::createPatient(std::string name , std::string imageLoc)
+{
+   //create a 'MySquare' object to represent a QGraphics object that can hold an image
+   Patient *newPatient = new Patient(imageLoc, name);
+
+   //create a pair that maps the name of the patient to the graphic object that represents it
+   std::pair <std::string,Patient *> patientPair (name,newPatient);
+
+   //add the new graphics object to the scene
+   scene->addItem(newPatient);
+}
 
 /**
  * Slot for update world.

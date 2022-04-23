@@ -12,6 +12,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsEllipseItem>
 #include "mysquare.h"
+#include "patient.h"
 #include "model.h"
 #include <iostream>
 
@@ -34,6 +35,7 @@ public:
     MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
     void createTreatment(std::string name, std::string imageLoc);
+    void createPatient(std::string name, std::string imageLoc);
 
 private slots:
 
