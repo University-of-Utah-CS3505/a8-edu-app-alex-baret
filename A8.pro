@@ -131,4 +131,5 @@ DISTFILES += \
     Box2D/CMakeLists.txt
 
 RESOURCES += \
-    Images.qrc
+    Images.qrc \
+    levels.qrc

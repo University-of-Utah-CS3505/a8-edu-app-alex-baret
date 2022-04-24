@@ -153,7 +153,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
             this,
             &MainWindow::on_toggleCanDrop_clicked);
 
-    //mainModel->loadLevel(mainModel->lvl1);
+    mainModel->loadLevel(mainModel->lvl1);
 
 }
 
@@ -221,16 +221,16 @@ void MainWindow::updateWorld(){
    //when it reaches the ground it has a linear velocity of zero; do not try to update position if there isn't a selected treatment yet
    if(body->GetLinearVelocity().y < 0 && mainModel->currentTreatment.second != "empty"){
 
-//       for(auto it = mainModel->lvl1->validTreatments.begin(); it != mainModel->lvl1->validTreatments.end(); ++it){
-//           if(mainModel->treatments.at(mainModel->currentTreatment.second)->canDrop){
+       for(auto it = mainModel->lvl1->validTreatments.begin(); it != mainModel->lvl1->validTreatments.end(); ++it){
+           if(mainModel->treatments.at(mainModel->currentTreatment.second)->canDrop){
 
-//               b2Vec2 position = body->GetPosition();
-//               emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
-//               //updating the QGraphicsItem to have the bodies' properties
-//               mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
+               b2Vec2 position = body->GetPosition();
+               emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
+               //updating the QGraphicsItem to have the bodies' properties
+               mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
 
-//           }
-//       }
+           }
+       }
    }
    else{
        body->SetLinearVelocity(b2Vec2(0,0));

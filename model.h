@@ -5,6 +5,7 @@
 #include "mysquare.h"
 #include <Box2D/Box2D.h>
 #include "level.h"
+#include "gamereader.h"
 
 class Model : public QObject
 {
@@ -25,6 +26,7 @@ public slots:
 
 private:
 std::vector<std::string> correctTreatmentOrder;
+std::vector<pair<std::string, Level>> levelList;
 
 
 

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/text">
+        <file>JsonExample_1.txt</file>
+    </qresource>
+</RCC>
