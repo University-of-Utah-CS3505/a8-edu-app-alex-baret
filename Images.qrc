@@ -4,7 +4,6 @@
         <file>luigi</file>
         <file>toad</file>
         <file>peach</file>
-        <file>ross king.jpg</file>
     </qresource>
     <qresource prefix="/medicines">
         <file>acetaminophen.png</file>
@@ -23,5 +22,6 @@
         <file>pepto-bismol.png</file>
         <file>water.png</file>
         <file>background</file>
+        <file>patient-basic</file>
     </qresource>
 </RCC>

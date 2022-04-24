@@ -40,7 +40,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     // ======== Create all inital 'treatments' ======== //
 
-      createPatient("scraped", ":/images/ross king.jpg");
+      createPatient("scraped", ":/medicines/patient-basic");
 
     // ======== Create all inital 'treatments' ======== //
 
