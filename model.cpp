@@ -27,7 +27,7 @@ QPixmap scraped1;
 QPixmap scraped0;
 
 vector<QPixmap> L1Stages = {scraped2, scraped1, scraped0};
-lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
+//lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
 
 }
 
