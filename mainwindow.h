@@ -31,11 +31,11 @@ public slots:
     void receiveNewHeightValue(float x, float height, std::string name);
 
 public:
+
     b2World world;
     MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
     void createTreatment(std::string name, std::string imageLoc);
-    void createPatient(std::string name, std::string imageLoc);
 
 private slots:
 

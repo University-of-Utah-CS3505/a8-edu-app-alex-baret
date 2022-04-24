@@ -33,6 +33,8 @@ GameReader* gr = new GameReader(":/text/JsonExample_1.txt");
 levelList = gr->getLevels();
 lvl1 = &levelList[0].second;
 
+//create a 'QGraphicsObject' object for a "patient"
+newPatient = new Patient(":/medicines/patient-basic", "patient");
 
 }
 
@@ -43,9 +45,9 @@ lvl1 = &levelList[0].second;
  */
 void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 {
-    bool collision = treatments.at(nameOfCaller)->collidesWithItem(treatments.at("neosporin"));
-    if (collision){
-        std::cout << nameOfCaller << " collided with luigi" << std::endl;
+    bool collision = treatments.at(nameOfCaller)->collidesWithItem(newPatient);
+    if (collision && nameOfCaller != "patient"){
+        std::cout << nameOfCaller << " collided with patient" << std::endl;
     }
 
 }
@@ -55,9 +57,7 @@ void Model::loadLevel(Level* level){
     for(auto it = level->validTreatments.begin(); it != level->validTreatments.end(); ++it){
         //setTreatmentCanDrop(it->data() , false);
     }
-//    for (int i = 0; i < level->validTreatments.size(); i++){
-//        setTreatmentCanDrop(level->validTreaments[i]->data() , false);
-//    }
+
     //do other stuff
 }
 
