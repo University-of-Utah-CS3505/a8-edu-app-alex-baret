@@ -46,6 +46,8 @@ private slots:
 
     void on_hintButton_clicked();
 
+    void on_nextButton_clicked();
+
 private:
     int expandedX = 500;
     void setSceneSize();

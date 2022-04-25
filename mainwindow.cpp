@@ -159,7 +159,12 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
             this,
             &MainWindow::on_toggleCanDrop_clicked);
 
-    mainModel->loadLevel(mainModel->lvl1);
+    connect(ui->nextButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::on_nextButton_clicked);
+
+    mainModel->loadLevel();
 
 }
 
@@ -335,5 +340,11 @@ void MainWindow::setSceneSize()
 void MainWindow::on_hintButton_clicked()
 {
     mainModel->showHint();
+}
+
+
+void MainWindow::on_nextButton_clicked()
+{
+    mainModel->loadNextLevel();
 }
 
