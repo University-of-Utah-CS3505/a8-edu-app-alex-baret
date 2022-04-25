@@ -2,7 +2,7 @@
    {   
       "title":"Sprained Ankle",
       "stepsText":[
-         "First you have to clean the wound using hydrogen peroxide.",
+         "First you have to disinfect the wound using hydrogen peroxide.",
          "Second you have to put on antibiotic get because..",
 	   "..."
       ],

@@ -58,7 +58,7 @@ void Model::loadLevel(Level* level){
     //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
     for(auto treatment : lvl1->validTreatments){
 
-        treatments.at(treatment)->canDrop = false;
+        //treatments.at(treatment)->canDrop = false;
     }
 
     //do other stuff

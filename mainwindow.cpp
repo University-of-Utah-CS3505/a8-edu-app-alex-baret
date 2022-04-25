@@ -73,7 +73,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     b2PolygonShape groundBox;
 
     // The extents are the half-widths of the box.
-    groundBox.SetAsBox(50.0f, 10.0f);
+    groundBox.SetAsBox(50.0f, 8.0f);
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
@@ -265,9 +265,9 @@ void MainWindow::on_toggleCanDrop_clicked()
         mainModel->setTreatmentCanDrop("ibuprofen" , false);
     }
     if(ui->luigiButton->isChecked()){
-        mainModel->setTreatmentCanDrop("hyrdogenPerxoide" , true);
+        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , true);
     }else{
-        mainModel->setTreatmentCanDrop("hyrdogenPerxoide" , false);
+        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , false);
     }
     if(ui->peachButton->isChecked()){
         mainModel->setTreatmentCanDrop("bandAid" , true);
@@ -297,6 +297,5 @@ void MainWindow::setSceneSize()
     QPoint sizeConstraint2 = QPoint(expandedX, -500);
     QRectF sceneSize = QRectF(sizeConstraint1, sizeConstraint2);
     scene->setSceneRect(sceneSize);
-
 }
 

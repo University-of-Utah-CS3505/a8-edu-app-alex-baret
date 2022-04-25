@@ -81,10 +81,10 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     float x = this->x();
     float y = this->y();
 
-    std::cout << "this object's xloc: " << this->pos().x() << "this object's yloc: "<< this->pos().y() << std::endl;
+    std::cout << "this object's xloc: " << this->pos().x() << " this object's yloc: "<< this->pos().y() << std::endl;
 
     //hardcoding in boundaries of scene size. NOTE: if you adjust the scene size you must update these values
-    if(x < 560 && x > -620 && y < 340 && y > -390){
+    if(x < 400 && x > -675 && y < 320 && y > -320){
         emit detectCollision(this->name);
         emit sendNewHeightSquare(x, y , name);
     }else{
