@@ -15,6 +15,7 @@
 #include "patient.h"
 #include "model.h"
 #include <iostream>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -51,6 +52,8 @@ private:
     QGraphicsScene *scene;
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
+    QVBoxLayout *teachPopLayout;
+    QVBoxLayout *stepsPopLayout;
 
     b2Body *body;
 
@@ -66,6 +69,8 @@ private:
     int32 positionIterations = 2;
 
     void toggleTreatmentCanDrop(bool checked);
+
+    void loadLevelUI(Level *level);
 
 };
 #endif // MAINWINDOW_H

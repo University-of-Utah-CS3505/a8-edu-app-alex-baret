@@ -25,4 +25,10 @@
         <file>patient-basic</file>
         <file>hot-pack2.png</file>
     </qresource>
+    <qresource prefix="/Stages">
+        <file>SK1.png</file>
+        <file>SK2.png</file>
+        <file>SK3.png</file>
+        <file>SK4.png</file>
+    </qresource>
 </RCC>
