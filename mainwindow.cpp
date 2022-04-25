@@ -19,12 +19,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this); //creating a new scene
-
-    QPoint sizeConstraint1 = QPoint(-500,500);
-    QPoint sizeConstraint2 = QPoint(500, -500);
-    QRectF sceneSize = QRectF(sizeConstraint1, sizeConstraint2);
-    scene->setSceneRect(sceneSize);
-
+    setSceneSize();
     ui->graphicsView->setScene(scene); //setting the scene of the graphics view
 
 
@@ -131,6 +126,14 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                this,
                &MainWindow::updateWorld);
        timer->start(10);
+
+
+       for ( auto treatment : mainModel->treatments) {
+          connect(treatment.second,
+                  &MySquare::notifySceneToResize,
+                  this,
+                  &MainWindow::setSceneSize);
+          }
 
 
     //loop through the 'treatments' from main model, i.e mySquare objects,
@@ -243,6 +246,15 @@ void MainWindow::receiveNewHeightValue(float x, float height, std::string name)
     body->SetLinearVelocity(fakeGravity);
 }
 
+/**
+ * Slot for scene resize events.  Connects to MySquare notifySceneToResize signal.
+ * @brief MainWindow::callSceneResize
+ */
+void MainWindow::callSceneResize()
+{
+    setSceneSize();
+}
+
 
 
 void MainWindow::on_toggleCanDrop_clicked()
@@ -267,5 +279,24 @@ void MainWindow::on_toggleCanDrop_clicked()
     }else{
         mainModel->setTreatmentCanDrop("neosporin", false);
     }
+}
+
+/**
+ * Resets the size of the GraphicView's scene.  Used to repaint the scene so that treatments overlapping the patient don't paint over the patient.
+ * @brief MainWindow::resetSceneSize
+ */
+void MainWindow::setSceneSize()
+{
+    if (expandedX % 2 == 0){
+        expandedX ++;
+    }
+    else{
+        expandedX --;
+    }
+    QPoint sizeConstraint1 = QPoint(-500,500);
+    QPoint sizeConstraint2 = QPoint(expandedX, -500);
+    QRectF sceneSize = QRectF(sizeConstraint1, sizeConstraint2);
+    scene->setSceneRect(sceneSize);
+
 }
 

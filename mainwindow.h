@@ -29,6 +29,7 @@ signals:
 public slots:
     void updateWorld();
     void receiveNewHeightValue(float x, float height, std::string name);
+    void callSceneResize();
 
 public:
 
@@ -43,6 +44,8 @@ private slots:
     void on_toggleCanDrop_clicked();
 
 private:
+    int expandedX = 500;
+    void setSceneSize();
     Model *mainModel;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;

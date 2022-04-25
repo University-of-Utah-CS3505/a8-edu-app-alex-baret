@@ -23,5 +23,6 @@
         <file>water.png</file>
         <file>background</file>
         <file>patient-basic</file>
+        <file>hot-pack2.png</file>
     </qresource>
 </RCC>

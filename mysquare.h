@@ -17,6 +17,8 @@ class MySquare : public QGraphicsObject
 signals:
     void sendNewHeightSquare(float x, float height , std::string name);
     void detectCollision(std::string name);
+    void notifySceneToResize();
+
 public:
     MySquare(std::string imagePath, std::string name, int initialX, int initialY , int width, int height);
     QRectF boundingRectangle;
@@ -32,7 +34,6 @@ public:
 
    int width = 50;
    int height = 62;
-
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

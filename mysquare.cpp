@@ -30,7 +30,7 @@ MySquare::MySquare(std::string imagePath, std::string name , int initialX, int i
  */
 QRectF MySquare::boundingRect() const
 {
-    return QRectF(this->initialXLoc,this->initialYLoc,100,100); //outer-most edge of the shape
+    return QRectF(this->initialXLoc,this->initialYLoc,this->width,this->height); //outer-most edge of the shape
 }
 
 /**
@@ -56,6 +56,7 @@ void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
  */
 void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    emit notifySceneToResize();
     std::cout << "in mouse press" <<std::endl;
     pressed = true;
 
@@ -70,6 +71,7 @@ void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
  */
 void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    emit notifySceneToResize();
     pressed = false;
     update(); //forces object to repaint
     QGraphicsItem::mouseReleaseEvent(event);
