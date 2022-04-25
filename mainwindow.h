@@ -31,6 +31,8 @@ public slots:
     void updateWorld();
     void receiveNewHeightValue(float x, float height, std::string name);
     void callSceneResize();
+    void startDroppingTreatment(float x, float y);
+
 
 public:
 
@@ -43,6 +45,10 @@ private slots:
 
 
     void on_toggleCanDrop_clicked();
+
+    void on_hintButton_clicked();
+
+    void on_nextButton_clicked();
 
 private:
     int expandedX = 500;

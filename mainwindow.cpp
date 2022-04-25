@@ -143,23 +143,35 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                &MySquare::sendNewHeightSquare,
                this,
                &MainWindow::receiveNewHeightValue);
-       }
 
-
-    //adding collision detection for each treatment
-    for ( auto treatment : mainModel->treatments) {
        connect(treatment.second, //connects initial collision detection signal from the caller to the slot in model
                    &MySquare::detectCollision,
                    mainModel,
                    &Model::collisionDetectionFromCaller);
-   }
+
+       //connects mySquare signal to slot in model to handle incorrect answers
+       connect(treatment.second,
+               &MySquare::incorrectAnswerChosen,
+               mainModel,
+               &Model::handleIncorrectAnswer);
+       }
+
+
+
 
     connect(ui->toggleCanDrop,
             &QPushButton::clicked,
             this,
             &MainWindow::on_toggleCanDrop_clicked);
 
-    mainModel->loadLevel(mainModel->lvl1);
+    connect(ui->nextButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::on_nextButton_clicked);
+
+
+
+    mainModel->loadLevel();
 
 
 
@@ -222,22 +234,44 @@ void MainWindow::updateWorld(){
    // It is generally best to keep the time step and iterations fixed.
    world.Step(timeStep, velocityIterations, positionIterations);
 
-   //when it reaches the ground it has a linear velocity of zero; do not try to update position if there isn't a selected treatment yet
-   if(body->GetLinearVelocity().y < 0 && mainModel->currentTreatment.second != "empty"){
+   //the body is moving towards the ground, i.e it having a negative velocity, indicates we need to update an objects position
+   if(body->GetLinearVelocity().y < 0 ){
+       //first we check if there is a current treatment, if there is then update it
+       if(mainModel->currentTreatment.second != "empty"){
+           //get the b2Body's position
+           b2Vec2 position = body->GetPosition();
 
-       for(auto it = mainModel->lvl1->validTreatments.begin(); it != mainModel->lvl1->validTreatments.end(); ++it){
-           if(mainModel->treatments.at(mainModel->currentTreatment.second)->canDrop){
+           //updating the QGraphicsItem that is selected to have the b2Body's position
+           mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
 
-               b2Vec2 position = body->GetPosition();
-               //emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
-               //updating the QGraphicsItem to have the bodies' properties
-               mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
+        //next we check if there are any hints available to drop
+       }else if(mainModel->hints.size() != 0){
+           b2Vec2 position = body->GetPosition();
 
-           }
+           //updating the QGraphicsItem to have the bodies' properties
+           mainModel->treatments.at(mainModel->hints.back())->setPos(position.x*75, -position.y*75);
        }
    }
    else{
-       body->SetLinearVelocity(b2Vec2(0,0));
+       //reset the b2Body to have zero velocity
+       body->SetLinearVelocity(b2Vec2(0,0)); 
+
+       //reset the current treatment to empty
+       mainModel->currentTreatment.second = "empty";
+
+       //check to see if there are remaining hints left to fall off the shelf
+       if(mainModel->hints.size() >0){
+           //set the field in hasDropped to true so that it cannot be selected as a hint again
+           mainModel->treatments.at(mainModel->hints.back())->hasDropped = true;
+           //start by removing a hint because if there was one present, it has already been updated
+           mainModel->hints.pop_back();
+           //if there are still hints remaining, drop start to drop them
+           if(mainModel->hints.size() >0){
+               int hintXLoc = mainModel->treatments.at(mainModel->hints.back())->initialXLoc;
+               int hintYLoc = mainModel->treatments.at(mainModel->hints.back())->initialYLoc;
+               startDroppingTreatment(hintXLoc, hintYLoc);
+           }
+       }
    }
 }
 
@@ -251,13 +285,8 @@ void MainWindow::receiveNewHeightValue(float x, float height, std::string name)
 {
     //set the box2D body to assoiciate with the 'treatment' that was clicked on
     mainModel->currentTreatment.second = name;
-
-    b2Vec2 newPos(x/75, -height/75);
-    // the real gravity set in startup is never used so im doing this for now
-    b2Vec2 fakeGravity(0.0f, -5.0f);
-
-    body->SetTransform(newPos, body->GetAngle());
-    body->SetLinearVelocity(fakeGravity);
+    //start dropping the b2Body
+    startDroppingTreatment(x, height);
 }
 
 /**
@@ -268,6 +297,24 @@ void MainWindow::callSceneResize()
 {
     setSceneSize();
 }
+
+/**
+ * Function for activating 'gravity' on the b2Body such that it starts falling.
+ *
+ * @brief MainWindow::startDroppingTreatment
+ * @param x - the x coordinate of where you want the b2Body  to drop from
+ * @param height - the height of where you want the b2Body  to drop from
+ */
+void MainWindow::startDroppingTreatment(float x, float height)
+{
+    b2Vec2 newPos(x/75, -height/75);
+    // the real gravity set in startup is never used so im doing this for now
+    b2Vec2 fakeGravity(0.0f, -5.0f);
+
+    body->SetTransform(newPos, body->GetAngle());
+    body->SetLinearVelocity(fakeGravity);
+}
+
 
 
 
@@ -314,6 +361,16 @@ void MainWindow::setSceneSize()
 }
 
 
+void MainWindow::on_hintButton_clicked()
+{
+    mainModel->showHint();
+}
+
+
+void MainWindow::on_nextButton_clicked()
+{
+    mainModel->loadNextLevel();
+}
 
 
 void MainWindow::loadLevelUI(Level *level){
@@ -347,3 +404,4 @@ void MainWindow::loadLevelUI(Level *level){
 
 
 }
+
