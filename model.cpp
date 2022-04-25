@@ -57,7 +57,6 @@ void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 void Model::loadLevel(){
     //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
     for(auto treatment : currentLevel->validTreatments){
-
         treatments.at(treatment)->canDrop = false;
     }
 
@@ -98,7 +97,7 @@ void Model::loadNextLevel(){
     //start by resettig all of the treatmets to their initial positions and starting flags
     for(auto it : treatments){
         it.second->setPos(it.second->initialXLoc, it.second->initialYLoc);
-        it.second->canDrop = false;
+        it.second->canDrop = true;
         it.second->hasDropped = false;
     }
 
