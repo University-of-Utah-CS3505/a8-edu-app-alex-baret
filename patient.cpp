@@ -33,7 +33,7 @@ QRectF Patient::boundingRect() const
  */
 void Patient::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(-150,50,300,500,image);
+    painter->drawPixmap(-150,-200,300,500,image);
     if(pressed)
     {
         setFlag(GraphicsItemFlag::ItemIsMovable,true);

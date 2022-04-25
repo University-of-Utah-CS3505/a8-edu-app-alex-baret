@@ -35,7 +35,7 @@ public:
     b2World world;
     MainWindow(Model& model, QWidget *parent = nullptr);
     ~MainWindow();
-    void createTreatment(std::string name, std::string imageLoc);
+    void createTreatment(std::string name, std::string imageLoc , int xLoc, int yLoc, int xDim, int yDim);
 
 private slots:
 

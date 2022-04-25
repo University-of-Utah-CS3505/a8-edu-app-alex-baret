@@ -19,6 +19,12 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this); //creating a new scene
+
+    QPoint sizeConstraint1 = QPoint(-500,500);
+    QPoint sizeConstraint2 = QPoint(500, -500);
+    QRectF sceneSize = QRectF(sizeConstraint1, sizeConstraint2);
+    scene->setSceneRect(sceneSize);
+
     ui->graphicsView->setScene(scene); //setting the scene of the graphics view
 
 
@@ -29,23 +35,15 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     palette.setBrush(QPalette::Window, image.scaled(this->width(), this->height()));
     setPalette(palette);
 
-    QBrush redBrush(Qt::red);
-    QBrush blueBrush(Qt::blue);
-    QPen blackPen(Qt::black);
-    blackPen.setWidth(6);
-
-    rectangle = scene->addRect(-100,-100,50,50, blackPen, blueBrush);
-    rectangle->setFlag(QGraphicsItem::ItemIsMovable);
-
     //adds patient to scene
     scene->addItem(mainModel->newPatient);
 
     // ======== Create all inital 'treatments' ======== //
 
-      createTreatment("ibuprofen" , ":/medicines/ibuprofen.png");
-      createTreatment("hyrdogenPerxoide",":/medicines/hydrogen-peroxide.png" );
-      createTreatment("bandAid" , ":/medicines/band-aid.png");
-      createTreatment("neosporin", ":/medicines/neosporin.png");
+      createTreatment("ibuprofen" , ":/medicines/ibuprofen.png" , 0, 0, 50, 62 );
+      createTreatment("hyrdogenPerxoide",":/medicines/hydrogen-peroxide.png", 0, 0, 50, 62 );
+      createTreatment("bandAid" , ":/medicines/band-aid.png", 0, 0, 50, 62);
+      createTreatment("neosporin", ":/medicines/neosporin.png", 0, 0, 50, 62);
 
     // ======== Box2D initial settings ======== //
 
@@ -111,10 +109,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // ======== Connections between signals and slots ======== //
 
     //connect call from signal to slot
-    connect(this, //connects ??
-                &MainWindow::sendNewHeightValue,
-                ui->verticalSlider,
-                &QSlider::setValue);
+//    connect(this, //connects ??
+//                &MainWindow::sendNewHeightValue,
+//                ui->verticalSlider,
+//                &QSlider::setValue);
 
     //update world based off timer
     timer = new QTimer(this);
@@ -168,10 +166,13 @@ MainWindow::~MainWindow()
 * @param xLoc - the x coordinate of the inital position of the new treatment object
 * @param yLoc - the y coordinate of the inital position of the new treatment object
 */
-void MainWindow::createTreatment(std::string name , std::string imageLoc)
+void MainWindow::createTreatment(std::string name , std::string imageLoc, int xLoc, int yLoc, int xDim, int yDim)
 {
    //create a 'MySquare' object to represent a QGraphics object that can hold an image
-   MySquare *newTreatment = new MySquare(imageLoc, name);
+   MySquare *newTreatment = new MySquare(imageLoc, name, xLoc, yLoc, xDim, yDim);
+
+   //set the inital position of the treatment
+   newTreatment->setPos(xLoc, yLoc);
 
    //create a pair that maps the name of the treatment to the graphic object that represents it
    std::pair <std::string,MySquare *> mySquarePair (name,newTreatment);
@@ -203,7 +204,7 @@ void MainWindow::updateWorld(){
            if(mainModel->treatments.at(mainModel->currentTreatment.second)->canDrop){
 
                b2Vec2 position = body->GetPosition();
-               emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
+               //emit sendNewHeightValue(position.y*75); //emit the new y value of the body TO THE SLIDER
                //updating the QGraphicsItem to have the bodies' properties
                mainModel->treatments.at(mainModel->currentTreatment.second)->setPos(position.x*75, -position.y*75);
 

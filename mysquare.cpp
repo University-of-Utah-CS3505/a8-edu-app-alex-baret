@@ -6,12 +6,19 @@
  * Constructor for custom item.
  * @brief MySquare::MySquare
  */
-MySquare::MySquare(std::string imagePath, std::string name)
+MySquare::MySquare(std::string imagePath, std::string name , int initialX, int initialY, int width, int height)
 {
     pressed = false;
     QString QImagePath =  QString::fromStdString(imagePath); //converts image path to QString
     image.load(QImagePath); //loads QString image path to this square's pixmap
+
     this->name = name;
+
+    this->initialXLoc = initialX;
+    this->initialYLoc = initialY;
+
+    this->width = width;
+    this->height = height;
 }
 
 /**
@@ -33,7 +40,7 @@ QRectF MySquare::boundingRect() const
  */
 void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(0,0,62,50,image);
+    painter->drawPixmap(initialXLoc,initialYLoc,width,height,image);
     if(pressed)
     {
         setFlag(GraphicsItemFlag::ItemIsMovable,true);
@@ -48,6 +55,7 @@ void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     pressed = true;
+
     update(); //forces object to repaint
     QGraphicsItem::mousePressEvent(event);
 }
@@ -63,9 +71,22 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     update(); //forces object to repaint
     QGraphicsItem::mouseReleaseEvent(event);
 
-    std::cout << "event info: " << event->pos().y() << std::endl;
+    //std::cout << "event info: " << event->pos().x() << " , "<<event->pos().y() << std::endl;
+
     float x = this->x();
-    float height = this->y();
-    emit detectCollision(this->name);
-    emit sendNewHeightSquare(x, height , name);
+    float y = this->y();
+
+    std::cout << "this object's xloc: " << this->pos().x() << "this object's yloc: "<< this->pos().y() << std::endl;
+
+    //hardcoding in boundaries of scene size. NOTE: if you adjust the scene size you must update these values
+    if(x < 560 && x > -620 && y < 340 && y > -390){
+        emit detectCollision(this->name);
+        emit sendNewHeightSquare(x, y , name);
+    }else{
+        //set position to initial position
+        std::cout << "out of bounds" << std::endl;
+        this->setPos(initialXLoc, initialYLoc);
+    }
+
+
 }

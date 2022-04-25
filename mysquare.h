@@ -18,7 +18,7 @@ signals:
     void sendNewHeightSquare(float x, float height , std::string name);
     void detectCollision(std::string name);
 public:
-    MySquare(std::string imagePath, std::string name);
+    MySquare(std::string imagePath, std::string name, int initialX, int initialY , int width, int height);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -26,6 +26,13 @@ public:
     bool pressed;
     std::string name;
     bool canDrop = true;
+
+    int initialXLoc;
+    int initialYLoc;
+
+   int width = 50;
+   int height = 62;
+
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
