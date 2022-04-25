@@ -40,10 +40,25 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     // ======== Create all inital 'treatments' ======== //
 
-      createTreatment("ibuprofen" , ":/medicines/ibuprofen.png" , 0, 0, 50, 62 );
-      createTreatment("hyrdogenPerxoide",":/medicines/hydrogen-peroxide.png", 0, 0, 50, 62 );
-      createTreatment("bandAid" , ":/medicines/band-aid.png", 0, 0, 50, 62);
-      createTreatment("neosporin", ":/medicines/neosporin.png", 0, 0, 50, 62);
+    //first shelf (left to right)
+    createTreatment("coldPack", ":/medicines/cold-pack.png", 160, -85, 50, 62);
+    createTreatment("peptoBismol", ":/medicines/pepto-bismol.png", 190, -85, 50, 62);
+    createTreatment("water", ":/medicines/water.png", 220, -85, 50, 62);
+    createTreatment("neosporin", ":/medicines/neosporin.png", 250, -85, 50, 62);
+
+    //second shelf (left to right)
+      createTreatment("allergy" , ":/medicines/allergy.png" , 160, -20, 50, 62 );
+      createTreatment("aloeVera",":/medicines/aloe-vera.png", 190, -20, 50, 62 );
+      createTreatment("bandage" , ":/medicines/bandage.png", 220, -20, 50, 62);
+      createTreatment("bandAid", ":/medicines/band-aid.png", 250, -20, 50, 62);
+    //third shelf (left to right)
+      createTreatment("coughDrops", ":/medicines/cough-drops.png", 160, 35, 50, 62);
+      createTreatment("hotPack", ":/medicines/hot-pack.png", 190, 35, 50, 62);
+      createTreatment("hydrogenPeroxide", ":/medicines/hydrogen-peroxide.png", 220, 35, 50, 62);
+     createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 250, 35, 50, 62);
+      //fourth shelf (left to right)
+     createTreatment("naselSpray", ":/medicines/nasel-spray.png", 160, 100, 50, 62);
+
 
     // ======== Box2D initial settings ======== //
 
@@ -108,11 +123,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     // ======== Connections between signals and slots ======== //
 
-    //connect call from signal to slot
-//    connect(this, //connects ??
-//                &MainWindow::sendNewHeightValue,
-//                ui->verticalSlider,
-//                &QSlider::setValue);
 
     //update world based off timer
     timer = new QTimer(this);
@@ -125,8 +135,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     //loop through the 'treatments' from main model, i.e mySquare objects,
     //and connect the singal with slot in mainwindow to move update the object's positions when they're moved
-
-
     for ( auto treatment : mainModel->treatments) {
        connect(treatment.second,
                &MySquare::sendNewHeightSquare,

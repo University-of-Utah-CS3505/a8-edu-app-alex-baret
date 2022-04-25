@@ -19,7 +19,7 @@ signals:
     void detectCollision(std::string name);
 public:
     MySquare(std::string imagePath, std::string name, int initialX, int initialY , int width, int height);
-
+    QRectF boundingRectangle;
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPixmap image;

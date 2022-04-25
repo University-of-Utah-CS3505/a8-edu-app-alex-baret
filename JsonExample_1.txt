@@ -16,9 +16,9 @@
 	   "Fever"
       ],
       "validTreatments":[
-         "hot-pack",
+         "coldPack",
          "ibuprofen",
-	   "band-aid"
+           "bandAid"
       ],
       "patientStagesImages":[
 	   ["SP1", ":Stages/SP1"],

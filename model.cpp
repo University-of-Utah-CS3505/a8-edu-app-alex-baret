@@ -29,12 +29,14 @@ Model::Model(QObject *parent)
 //vector<QPixmap> L1Stages = {scraped2, scraped1, scraped0};
 //lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
 
-GameReader* gr = new GameReader(":/text/JsonExample_1.txt");
-levelList = gr->getLevels();
+GameReader* levels = new GameReader(":/text/JsonExample_1.txt");
+levelList = levels->getLevels();
 lvl1 = &levelList[0].second;
+
 
 //create a 'QGraphicsObject' object for a "patient"
 newPatient = new Patient(":/medicines/patient-basic", "patient");
+
 
 }
 
@@ -54,8 +56,9 @@ void Model::collisionDetectionFromCaller(std::string nameOfCaller)
 
 void Model::loadLevel(Level* level){
     //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
-    for(auto it = level->validTreatments.begin(); it != level->validTreatments.end(); ++it){
-        //setTreatmentCanDrop(it->data() , false);
+    for(auto treatment : lvl1->validTreatments){
+
+        treatments.at(treatment)->canDrop = false;
     }
 
     //do other stuff
