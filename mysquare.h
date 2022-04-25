@@ -28,6 +28,7 @@ public:
     bool pressed;
     std::string name;
     bool canDrop = true;
+    bool hasDropped;
 
     int initialXLoc;
     int initialYLoc;

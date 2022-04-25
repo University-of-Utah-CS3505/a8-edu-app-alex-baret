@@ -67,3 +67,24 @@ void Model::loadLevel(Level* level){
 void Model::setTreatmentCanDrop(std::string name, bool canDrop){
     treatments.at(name)->canDrop = canDrop;
 }
+
+void Model::showHint()
+{
+    //loop through all the treatments and check to see if they are invalid or not.
+    for(auto it : treatments){
+        std::string curr = it.first;
+
+        //if you reach the end of valid treatments then 'curr' is an invalid treatment
+        if(std::find(lvl1->validTreatments.begin(), lvl1->validTreatments.end() , curr) == lvl1->validTreatments.end()){
+            //randomly decided if this invalid treatment should fall off the shelf
+
+            if(rand() % 2 == 0 && !treatments.at(curr)->hasDropped){
+                //set the treatment can drop flag to true and add it to the hints list
+                treatments.at(curr)->canDrop = true;
+                hints.push_back(curr);
+            }
+        }
+    }
+}
+
+
