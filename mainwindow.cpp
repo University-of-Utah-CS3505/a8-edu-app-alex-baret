@@ -173,20 +173,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     mainModel->loadLevel();
 
-
-
-
-
-
-    // SET UP POPUP
-
-    GameReader* lv = new GameReader(":/text/ProjectLevelData.txt");
-    std::vector<pair<std::string, Level>> ll = lv->getLevels();
-    Level *lvl = &ll[0].second;
-    ui->MainPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
-    ui->MainPopup->hide();
-    loadLevelUI(lvl);
-
 }
 
 MainWindow::~MainWindow()
@@ -370,38 +356,5 @@ void MainWindow::on_hintButton_clicked()
 void MainWindow::on_nextButton_clicked()
 {
     mainModel->loadNextLevel();
-}
-
-
-void MainWindow::loadLevelUI(Level *level){
-    stepsPopLayout = new QVBoxLayout();
-    QLabel *stitle = new QLabel();
-    stitle->setText("Steps to Solve a " + QString::fromStdString(level->title) + ":");
-    QGridLayout *gl = new QGridLayout();
-    for (int i = 0; i < level->stepsImages.size(); i++)
-    {
-        QLabel *label = new QLabel();
-        label->setFixedHeight(100);
-        label->setFixedWidth(100);
-        QString s = QString::fromStdString(level->stepsImages[i].second);
-        QPixmap pixmap(s);
-        pixmap = pixmap.scaled(label->size(),Qt::KeepAspectRatio);
-        label->setPixmap(pixmap);
-        gl->addWidget(label, i, 0);
-
-        QLabel *tLabel = new QLabel();
-        tLabel->setStyleSheet("font-size: 20px; color: tan; font-family: 'Fuzzy Bubbles', cursive;");
-        tLabel->setWordWrap(true);
-        tLabel->setText(QString::fromStdString(level->stepsText[i]));
-        gl->addWidget(tLabel, i, 1);
-    }
-
-    stepsPopLayout->addWidget(stitle);
-    stepsPopLayout->addLayout(gl);
-    stepsPopLayout->addWidget(stitle);
-    ui->MainPopup->setLayout(stepsPopLayout);
-    ui->MainPopup->show();
-
-
 }
 
