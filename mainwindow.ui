@@ -111,15 +111,6 @@ background: transparent;</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QWidget" name="MainPopup" native="true">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>130</y>
-      <width>701</width>
-      <height>531</height>
-     </rect>
-    </property>
    <widget class="QPushButton" name="hintButton">
     <property name="geometry">
      <rect>
@@ -153,7 +144,7 @@ background: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
