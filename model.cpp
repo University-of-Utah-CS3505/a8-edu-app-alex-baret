@@ -65,7 +65,6 @@ void Model::loadLevel(){
 
     //set text for explanation pop up
 
-    //
 
     //do other stuff
 }
@@ -115,6 +114,16 @@ void Model::loadNextLevel(){
     //finally, load the next level data into the current level field
     currentLevel = &levelList[levelCount].second;
     loadLevel();
+}
+
+/**
+ * Handles incorrect answer from mySquare signal.
+ * @brief Model::handleIncorrectAnswer
+ */
+void Model::handleIncorrectAnswer()
+{
+    answeredIncorrectly = true;
+    showHint();
 }
 
 

@@ -18,6 +18,7 @@ public:
     Level* currentLevel;
     Patient *newPatient;
     int levelCount = 0;
+    bool answeredIncorrectly = false;
 
     std::vector<std::string> hints;
 
@@ -25,11 +26,12 @@ public:
     void showHint();
     void loadNextLevel();
 
+
 signals:
     void fallOffShelf(int xLoc, int yLoc, std::string name);
 
-
 public slots:
+    void handleIncorrectAnswer();
     void collisionDetectionFromCaller(std::string nameOfCaller);
     void loadLevel();
 

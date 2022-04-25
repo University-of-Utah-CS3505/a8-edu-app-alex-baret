@@ -143,16 +143,21 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                &MySquare::sendNewHeightSquare,
                this,
                &MainWindow::receiveNewHeightValue);
-       }
 
-
-    //adding collision detection for each treatment
-    for ( auto treatment : mainModel->treatments) {
        connect(treatment.second, //connects initial collision detection signal from the caller to the slot in model
                    &MySquare::detectCollision,
                    mainModel,
                    &Model::collisionDetectionFromCaller);
-   }
+
+       //connects mySquare signal to slot in model to handle incorrect answers
+       connect(treatment.second,
+               &MySquare::incorrectAnswerChosen,
+               mainModel,
+               &Model::handleIncorrectAnswer);
+       }
+
+
+
 
     connect(ui->toggleCanDrop,
             &QPushButton::clicked,
@@ -163,6 +168,8 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
             &QPushButton::clicked,
             this,
             &MainWindow::on_nextButton_clicked);
+
+
 
     mainModel->loadLevel();
 
@@ -233,12 +240,15 @@ void MainWindow::updateWorld(){
    }
    else{
        //reset the b2Body to have zero velocity
-       body->SetLinearVelocity(b2Vec2(0,0));
+       body->SetLinearVelocity(b2Vec2(0,0)); 
+
        //reset the current treatment to empty
        mainModel->currentTreatment.second = "empty";
 
        //check to see if there are remaining hints left to fall off the shelf
        if(mainModel->hints.size() >0){
+           //set the field in hasDropped to true so that it cannot be selected as a hint again
+           mainModel->treatments.at(mainModel->hints.back())->hasDropped = true;
            //start by removing a hint because if there was one present, it has already been updated
            mainModel->hints.pop_back();
            //if there are still hints remaining, drop start to drop them
@@ -246,8 +256,6 @@ void MainWindow::updateWorld(){
                int hintXLoc = mainModel->treatments.at(mainModel->hints.back())->initialXLoc;
                int hintYLoc = mainModel->treatments.at(mainModel->hints.back())->initialYLoc;
                startDroppingTreatment(hintXLoc, hintYLoc);
-               //set the field in hasDropped to true so that it cannot be selected as a hint again
-               mainModel->treatments.at(mainModel->hints.back())->hasDropped = true;
            }
        }
    }
@@ -292,6 +300,8 @@ void MainWindow::startDroppingTreatment(float x, float height)
     body->SetTransform(newPos, body->GetAngle());
     body->SetLinearVelocity(fakeGravity);
 }
+
+
 
 
 void MainWindow::on_toggleCanDrop_clicked()

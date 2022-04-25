@@ -76,11 +76,9 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     update(); //forces object to repaint
     QGraphicsItem::mouseReleaseEvent(event);
 
-    //std::cout << "event info: " << event->pos().x() << " , "<<event->pos().y() << std::endl;
 
     float x = this->x();
     float y = this->y();
-
 
     //hardcoding in boundaries of scene size. NOTE: if you adjust the scene size you must update these values
     if(x < 400 && x > -675 && y < 320 && y > -320){
@@ -88,11 +86,11 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         if(canDrop){
             emit detectCollision(this->name);
             emit sendNewHeightSquare(x, y , name);
+            hasDropped = true;
+            emit incorrectAnswerChosen();
         }
     }else{
         //set position to initial position
         this->setPos(initialXLoc, initialYLoc);
     }
-
-
 }

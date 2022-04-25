@@ -32,6 +32,7 @@ public slots:
     void callSceneResize();
     void startDroppingTreatment(float x, float y);
 
+
 public:
 
     b2World world;
