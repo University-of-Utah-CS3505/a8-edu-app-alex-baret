@@ -23,7 +23,7 @@ Patient::Patient(std::string imagePath, std::string name)
  */
 QRectF Patient::boundingRect() const
 {
-    return QRectF(0,0,300,500); //outer-most edge of the shape
+    return QRectF(0,0,300,550); //outer-most edge of the shape
 }
 
 /**
@@ -35,7 +35,7 @@ QRectF Patient::boundingRect() const
  */
 void Patient::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(0,0,300,500,image);
+    painter->drawPixmap(0,0,300,550,image);
     if(pressed)
     {
         setFlag(GraphicsItemFlag::ItemIsMovable,true);

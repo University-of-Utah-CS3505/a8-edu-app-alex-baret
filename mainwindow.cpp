@@ -161,21 +161,25 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
             this,
             &MainWindow::on_nextButton_clicked);
 
+    connect(mainModel,
+            &Model::loadUI,
+            this,
+            &MainWindow::loadLevelUI);
+
+    connect(mainModel,
+            &Model::showPopSignal,
+            this,
+            &MainWindow::showPopup);
+
 
 
     mainModel->loadLevel();
 
-
-
-    GameReader* lv = new GameReader(":/text/LevelDataJson.txt");
-    std::vector<pair<std::string, Level>> ll = lv->getLevels();
-    Level *lvl = &ll[2].second;
     ui->StepPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
     ui->StepPopup->hide();
     ui->TeachPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
 
     ui->TeachPopup->hide();
-    loadLevelUI(lvl);
 
     ui->symptomsList->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
 
@@ -308,6 +312,31 @@ void MainWindow::startDroppingTreatment(float x, float height)
 }
 
 
+void MainWindow::on_toggleCanDrop_clicked()
+{
+    if(ui->marioButton->isChecked()){
+        mainModel->setTreatmentCanDrop("ibuprofen" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("ibuprofen" , false);
+    }
+    if(ui->luigiButton->isChecked()){
+        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , false);
+    }
+    if(ui->peachButton->isChecked()){
+        mainModel->setTreatmentCanDrop("band-aid" , true);
+    }else{
+        mainModel->setTreatmentCanDrop("band-aid" , false);
+    }
+    if(ui->toadButton->isChecked()){
+        mainModel->setTreatmentCanDrop("neosporin", true);
+    }else{
+        mainModel->setTreatmentCanDrop("neosporin", false);
+    }
+}
+
+
 /**
  * Resets the size of the GraphicView's scene.  Used to repaint the scene so that treatments overlapping the patient don't paint over the patient.
  * @brief MainWindow::resetSceneSize
@@ -339,7 +368,8 @@ void MainWindow::on_nextButton_clicked()
 }
 
 
-void MainWindow::loadLevelUI(Level *level){
+void MainWindow::loadLevelUI(){
+    Level *level = mainModel->currentLevel;
     stepsPopLayout = new QVBoxLayout();
     QLabel *stitle = new QLabel();
     stitle->setText("Steps to Solve: " + QString::fromStdString(level->title));
@@ -363,6 +393,8 @@ void MainWindow::loadLevelUI(Level *level){
         gl->addWidget(tLabel, i, 1);
     }
 
+    mainModel->levelPassed->setStyleSheet("font-size: 15px; color: rgb(168, 139, 106); font-weight: 600;");
+    stepsPopLayout->addWidget(mainModel->levelPassed);
     stepsPopLayout->addWidget(stitle);
     stepsPopLayout->setAlignment(Qt::AlignCenter);
     gl->setAlignment(Qt::AlignCenter);
@@ -429,14 +461,7 @@ void MainWindow::loadLevelUI(Level *level){
     ui->TeachPopup->setLayout(teachPopLayout);
     // NEXT LEVEL BUTTON CONNECT
 
-    //Delete this eventualy
-    ui->StepPopup->show();
 
-
-    //LEVEL SYMPTOMS
-    //level title
-
-    //symptoms title
     symptomsLayout = new QVBoxLayout();
 
     QString symptomsTitle = QString::fromStdString(level->title + "\n" + "Symptoms");
@@ -458,12 +483,13 @@ void MainWindow::loadLevelUI(Level *level){
 
     ui->symptomsList->setLayout(symptomsLayout);
 
-
-
-
 }
 
 void MainWindow::toTeach(){
     ui->StepPopup->hide();
     ui->TeachPopup->show();
+}
+
+void MainWindow::showPopup(){
+    ui->StepPopup->show();
 }

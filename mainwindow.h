@@ -31,6 +31,8 @@ public slots:
     void receiveNewHeightValue(float x, float height, std::string name);
     void callSceneResize();
     void startDroppingTreatment(float x, float y);
+    void loadLevelUI();
+    void showPopup();
 
 
 public:
@@ -45,6 +47,9 @@ private slots:
     void on_hintButton_clicked();
 
     void on_nextButton_clicked();
+
+    void toTeach();
+
 
 private:
     int expandedX = 500;
@@ -73,10 +78,6 @@ private:
     int32 positionIterations = 2;
 
     void toggleTreatmentCanDrop(bool checked);
-    void loadLevelUI(Level *level);
-
-private slots:
-    void toTeach();
 
 };
 #endif // MAINWINDOW_H

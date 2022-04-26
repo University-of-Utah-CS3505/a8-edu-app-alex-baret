@@ -26,16 +26,19 @@ public:
 
     void setTreatmentCanDrop(std::string name, bool canDrop);
     void showHint();
-
+    QLabel *levelPassed = new QLabel("QLabel text.");
 
 signals:
     void fallOffShelf(int xLoc, int yLoc, std::string name);
+    void showPopSignal();
+    void loadUI();
 
 public slots:
     void handleIncorrectAnswer();
     void collisionDetectionFromCaller(MySquare* caller);
     void loadLevel();
     void loadNextLevel();
+    void EmitShowPop();
 
 
 private:
