@@ -57,7 +57,6 @@ void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     emit notifySceneToResize();
-    std::cout << "in mouse press" <<std::endl;
     pressed = true;
 
     update(); //forces object to repaint

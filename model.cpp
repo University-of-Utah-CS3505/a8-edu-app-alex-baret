@@ -50,6 +50,15 @@ void Model::collisionDetectionFromCaller(std::string nameOfCaller)
     bool collision = treatments.at(nameOfCaller)->collidesWithItem(newPatient);
     if (collision && nameOfCaller != "patient"){
         std::cout << nameOfCaller << " collided with patient" << std::endl;
+
+        // if name of caller matches one of the valid treatment names, treatment is valid, else it is invalid
+        for (string t : currentLevel->validTreatments){
+            if (t == nameOfCaller){
+                std::cout << "   VALID TREATMENT" << std::endl;
+                return;
+            }
+        }
+        std::cout << "   WRONG TREATMENT" << std::endl;
     }
 
 }
