@@ -183,6 +183,17 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     ui->symptomsList->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
 
+    //Instructions
+    QString instructions = QString::fromStdString("Drag the correct treatment to the patient to heal them!");
+    QLabel *instructionsLabel = new QLabel(instructions);
+
+    instructionsLayout = new QVBoxLayout();
+
+    instructionsLabel->setWordWrap(true);
+    instructionsLabel->setStyleSheet("margin: 0px 25px 0px 25px; font-size: 20px; color: rgb(140, 111, 77); font-weight: 700;");
+    instructionsLayout->addWidget(instructionsLabel);
+
+    ui->instructionsWidget->setLayout(instructionsLayout);
 }
 
 MainWindow::~MainWindow()

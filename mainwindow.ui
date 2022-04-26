@@ -77,6 +77,16 @@ border: 0px;</string>
      </rect>
     </property>
    </widget>
+   <widget class="QWidget" name="instructionsWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>40</y>
+      <width>641</width>
+      <height>80</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -84,7 +94,7 @@ border: 0px;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -62,6 +62,7 @@ private:
     QVBoxLayout *stepsPopLayout;
     QVBoxLayout *teachPopLayout;
     QVBoxLayout *symptomsLayout;
+    QVBoxLayout *instructionsLayout;
 
 
     b2Body *body;

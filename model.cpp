@@ -58,7 +58,7 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
                 levelPassed->setText("Good Job! You passed the Level!");
                 newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage+1].second));
                 newPatient->update();
-                QTimer::singleShot(2000, this, &Model::EmitShowPop);
+                QTimer::singleShot(1000, this, &Model::EmitShowPop);
                 caller->setPos(5000,-5000);
                 return;
             }
@@ -70,7 +70,7 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
         else {
             std::cout << "   LEVEL FAILED" << std::endl;
             levelPassed->setText("Not quite! Here are the steps to solve.");
-            QTimer::singleShot(2000, this, &Model::EmitShowPop);
+            QTimer::singleShot(1000, this, &Model::EmitShowPop);
         }
     }
 
