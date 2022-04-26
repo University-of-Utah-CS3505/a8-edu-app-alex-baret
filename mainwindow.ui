@@ -137,6 +137,16 @@ background: transparent;</string>
      <string>Next Level</string>
     </property>
    </widget>
+   <widget class="QWidget" name="MainPopup" native="true">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>120</y>
+      <width>721</width>
+      <height>521</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -144,7 +154,7 @@ background: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

@@ -57,6 +57,9 @@ private:
     QGraphicsScene *scene;
     QGraphicsEllipseItem *ellipse;
     QGraphicsRectItem *rectangle;
+    QVBoxLayout *stepsPopLayout;
+    QVBoxLayout *teachPopLayout;
+
 
     b2Body *body;
 
@@ -72,6 +75,7 @@ private:
     int32 positionIterations = 2;
 
     void toggleTreatmentCanDrop(bool checked);
+    void loadLevelUI(Level *level);
 
 };
 #endif // MAINWINDOW_H
