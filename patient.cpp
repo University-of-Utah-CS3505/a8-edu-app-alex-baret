@@ -13,6 +13,7 @@ Patient::Patient(std::string imagePath, std::string name)
     image.load(QImagePath); //loads QString image path to this square's pixmap
     this->name = name;
     this->setPos(-150,-200);
+    stage = 0;
 }
 
 /**

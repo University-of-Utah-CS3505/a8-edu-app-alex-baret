@@ -16,7 +16,7 @@ class MySquare : public QGraphicsObject
 
 signals:
     void sendNewHeightSquare(float x, float height , std::string name);
-    void detectCollision(std::string name);
+    void detectCollision(MySquare* name);
     void notifySceneToResize();
     void incorrectAnswerChosen();
 

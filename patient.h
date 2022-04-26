@@ -26,6 +26,7 @@ public:
     bool pressed;
     std::string name;
     bool canDrop = true;
+    int stage;
 
 };
 

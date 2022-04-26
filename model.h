@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <QObject>
+#include <QTimer>
 #include "mysquare.h"
 #include <Box2D/Box2D.h>
 #include "level.h"
@@ -18,13 +19,13 @@ public:
     Level* currentLevel;
     Patient *newPatient;
     int levelCount = 0;
+    int wrongGuesses = 0;
     bool answeredIncorrectly = false;
 
     std::vector<std::string> hints;
 
     void setTreatmentCanDrop(std::string name, bool canDrop);
     void showHint();
-    void loadNextLevel();
 
 
 signals:
@@ -32,8 +33,9 @@ signals:
 
 public slots:
     void handleIncorrectAnswer();
-    void collisionDetectionFromCaller(std::string nameOfCaller);
+    void collisionDetectionFromCaller(MySquare* caller);
     void loadLevel();
+    void loadNextLevel();
 
 
 private:

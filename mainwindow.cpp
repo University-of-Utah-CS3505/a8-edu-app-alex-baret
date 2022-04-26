@@ -395,5 +395,5 @@ void MainWindow::loadLevelUI(Level *level){
     stepsPopLayout->addLayout(gl);
     stepsPopLayout->addWidget(stitle);
     ui->MainPopup->setLayout(stepsPopLayout);
-    ui->MainPopup->show();
+    //ui->MainPopup->show();
 }

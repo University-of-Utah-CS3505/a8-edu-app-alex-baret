@@ -21,8 +21,8 @@
            "bandAid"
       ],
       "patientStagesImages":[
-	   ["SP1", ":Stages/SP1"],
-	   ["SP2", ":Stages/SP2"]
+           ["SP1", ":Stages/SK1"],
+           ["SP2", ":Stages/SK2"]
       ],
       "stepsImages":[
 	   ["ibuprofen", ":Medicines/ibuprofen"],
