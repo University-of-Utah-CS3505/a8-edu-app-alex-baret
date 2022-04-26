@@ -23,6 +23,7 @@ public:
     bool answeredIncorrectly = false;
 
     std::vector<std::string> hints;
+    std::vector<std::string> neededTreatment;
 
     void setTreatmentCanDrop(std::string name, bool canDrop);
     void showHint();

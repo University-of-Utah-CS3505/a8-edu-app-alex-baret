@@ -44,29 +44,27 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
         std::cout << nameOfCaller << " collided with patient" << std::endl;
 
         // if name of caller matches one of the valid treatment names, treatment is valid and patient sprite should be changed
-        for (string t : currentLevel->validTreatments){
-            if (t == nameOfCaller){
-                if (currentLevel->patientStagesImages[newPatient->stage+1].first != "H"){
-                    std::cout << "   VALID TREATMENT" << std::endl;
-                    newPatient->stage++;
-                    newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage].second));
-                    newPatient->update();
-                    caller->setPos(5000,-5000);
-                    return;
-                }
-                else if (currentLevel->patientStagesImages[newPatient->stage+1].first == "H"){
-                    std::cout << "   LEVEL COMPLETED" << std::endl;
-                    levelPassed->setText("Good Job! You passed the Level!");
-                    newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage+1].second));
-                    newPatient->update();
-                    QTimer::singleShot(2000, this, &Model::EmitShowPop);
-                    caller->setPos(5000,-5000);
-                    return;
-                }
+        if (neededTreatment[newPatient->stage] == nameOfCaller){
+            if (currentLevel->patientStagesImages[newPatient->stage+1].first != "H"){
+                std::cout << "   VALID TREATMENT" << std::endl;
+                newPatient->stage++;
+                newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage].second));
+                newPatient->update();
+                caller->setPos(5000,-5000);
+                return;
+            }
+            else if (currentLevel->patientStagesImages[newPatient->stage+1].first == "H"){
+                std::cout << "   LEVEL COMPLETED" << std::endl;
+                levelPassed->setText("Good Job! You passed the Level!");
+                newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage+1].second));
+                newPatient->update();
+                QTimer::singleShot(2000, this, &Model::EmitShowPop);
+                caller->setPos(5000,-5000);
+                return;
             }
         }
         // else treatment is invalid
-        if (wrongGuesses < 1){
+        if (wrongGuesses < 2){
             std::cout << "   WRONG TREATMENT" << std::endl;
         }
         else {
@@ -98,6 +96,17 @@ void Model::loadLevel(){
     newPatient->stage = 0;
     newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[0].second));
     newPatient->update();
+
+    //set currently needed treatment
+    if (!currentLevel->inOrder){
+        neededTreatment = currentLevel->validTreatments;
+    }
+    //order if neccesary
+    else {
+        for (pair<string, string> p : currentLevel->medicineToStage){
+            neededTreatment.push_back(p.first);
+        }
+    }
 
     //reset wrong guess counter
     wrongGuesses = 0;
@@ -162,5 +171,4 @@ void Model::handleIncorrectAnswer()
     wrongGuesses++;
     showHint();
 }
-
 
