@@ -53,7 +53,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
      createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 250, 35, 50, 62);
       //fourth shelf (left to right)
      createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 160, 100, 50, 62);
-
+     createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 190, 100, 50, 62);
 
     // ======== Box2D initial settings ========
 
@@ -309,31 +309,6 @@ void MainWindow::startDroppingTreatment(float x, float height)
 
     body->SetTransform(newPos, body->GetAngle());
     body->SetLinearVelocity(fakeGravity);
-}
-
-
-void MainWindow::on_toggleCanDrop_clicked()
-{
-    if(ui->marioButton->isChecked()){
-        mainModel->setTreatmentCanDrop("ibuprofen" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("ibuprofen" , false);
-    }
-    if(ui->luigiButton->isChecked()){
-        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , false);
-    }
-    if(ui->peachButton->isChecked()){
-        mainModel->setTreatmentCanDrop("band-aid" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("band-aid" , false);
-    }
-    if(ui->toadButton->isChecked()){
-        mainModel->setTreatmentCanDrop("neosporin", true);
-    }else{
-        mainModel->setTreatmentCanDrop("neosporin", false);
-    }
 }
 
 

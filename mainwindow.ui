@@ -30,8 +30,8 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">border:1px solid red;
-background: transparent;</string>
+     <string notr="true">background: transparent;
+border: 0px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="nextButton">
@@ -84,7 +84,7 @@ background: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

@@ -67,7 +67,7 @@
       "validTreatments":[
          "water",
          "cold-pack",
-	   "Ibuprofen",
+           "ibuprofen",
 	   "acetaminophen"
       ],
       "patientStagesImages":[
