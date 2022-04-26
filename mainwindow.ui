@@ -137,12 +137,22 @@ background: transparent;</string>
      <string>Next Level</string>
     </property>
    </widget>
-   <widget class="QWidget" name="MainPopup" native="true">
+   <widget class="QWidget" name="StepPopup" native="true">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>330</x>
       <y>120</y>
-      <width>721</width>
+      <width>661</width>
+      <height>521</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="TeachPopup" native="true">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>120</y>
+      <width>661</width>
       <height>521</height>
      </rect>
     </property>

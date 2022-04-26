@@ -30,5 +30,12 @@
         <file>SK2.png</file>
         <file>SK3.png</file>
         <file>SK4.png</file>
+        <file>SA1.png</file>
+        <file>SA2.png</file>
+        <file>SA3.png</file>
+        <file>SA4.png</file>
+        <file>HA1.png</file>
+        <file>HA2.png</file>
+        <file>HA3.png</file>
     </qresource>
 </RCC>
