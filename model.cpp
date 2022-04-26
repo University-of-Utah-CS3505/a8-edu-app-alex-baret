@@ -18,16 +18,6 @@ Model::Model(QObject *parent)
 {
 
 //=== loading levels ===//
-//vector<string> L1Lessons = {"Education about antibiotic medication", "Teaches other cleaning methods"};
-//vector<string> L1Treatments = {"hyrdogenPerxoide", "neosporin", "bandAid"};
-//vector<string> L1Symptoms = {"No symptoms"};
-
-//QPixmap scraped2;
-//QPixmap scraped1;
-//QPixmap scraped0;
-
-//vector<QPixmap> L1Stages = {scraped2, scraped1, scraped0};
-//lvl1 = new Level("Scratched Knees", L1Lessons, L1Treatments, L1Symptoms, L1Stages, true);
 
 GameReader* levels = new GameReader(":/text/JsonExample_1.txt");
 levelList = levels->getLevels();
@@ -45,20 +35,42 @@ newPatient = new Patient(":/medicines/patient-basic", "patient");
  * @brief Model::collisionDetectionFromCaller
  * @param nameOfCaller
  */
-void Model::collisionDetectionFromCaller(std::string nameOfCaller)
+void Model::collisionDetectionFromCaller(MySquare* caller)
 {
+    string nameOfCaller = caller->name;
     bool collision = treatments.at(nameOfCaller)->collidesWithItem(newPatient);
     if (collision && nameOfCaller != "patient"){
         std::cout << nameOfCaller << " collided with patient" << std::endl;
 
-        // if name of caller matches one of the valid treatment names, treatment is valid, else it is invalid
+        // if name of caller matches one of the valid treatment names, treatment is valid and patient sprite should be changed
         for (string t : currentLevel->validTreatments){
             if (t == nameOfCaller){
-                std::cout << "   VALID TREATMENT" << std::endl;
-                return;
+                if (newPatient->stage < (int) currentLevel->patientStagesImages.size()-1){
+                    std::cout << "   VALID TREATMENT" << std::endl;
+                    newPatient->stage++;
+                    newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage].second));
+                    newPatient->update();
+                    caller->setPos(5000,-5000);
+                    return;
+                }
+                else if (newPatient->stage >= (int) currentLevel->patientStagesImages.size()-1){
+                    std::cout << "   LEVEL COMPLETED" << std::endl;
+                    newPatient->image.load(QString::fromStdString(":/medicines/patient-basic"));
+                    newPatient->update();
+                    QTimer::singleShot(2000, this, &Model::loadNextLevel);
+                    caller->setPos(5000,-5000);
+                    return;
+                }
             }
         }
-        std::cout << "   WRONG TREATMENT" << std::endl;
+        // else treatment is invalid
+        if (wrongGuesses < 1){
+            std::cout << "   WRONG TREATMENT" << std::endl;
+        }
+        else {
+            std::cout << "   LEVEL FAILED" << std::endl;
+            QTimer::singleShot(2000, this, &Model::loadNextLevel);
+        }
     }
 
 }
@@ -74,6 +86,13 @@ void Model::loadLevel(){
 
     //set text for explanation pop up
 
+    //set patient image
+    newPatient->stage = 0;
+    newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[0].second));
+    newPatient->update();
+
+    //reset wrong guess counter
+    wrongGuesses = 0;
 
     //do other stuff
 }
@@ -132,6 +151,7 @@ void Model::loadNextLevel(){
 void Model::handleIncorrectAnswer()
 {
     answeredIncorrectly = true;
+    wrongGuesses++;
     showHint();
 }
 

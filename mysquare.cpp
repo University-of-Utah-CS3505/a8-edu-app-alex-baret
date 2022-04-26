@@ -81,7 +81,7 @@ void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     //hardcoding in boundaries of scene size. NOTE: if you adjust the scene size you must update these values
     if(x < 400 && x > -675 && y < 320 && y > -320){
-        emit detectCollision(this->name);
+        emit detectCollision(this);
         //only drop the object if it can
         if(canDrop){
             emit sendNewHeightSquare(x, y , name);
