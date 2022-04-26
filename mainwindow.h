@@ -44,9 +44,6 @@ public:
 
 private slots:
 
-
-    void on_toggleCanDrop_clicked();
-
     void on_hintButton_clicked();
 
     void on_nextButton_clicked();
@@ -64,7 +61,7 @@ private:
     QGraphicsRectItem *rectangle;
     QVBoxLayout *stepsPopLayout;
     QVBoxLayout *teachPopLayout;
-
+    QVBoxLayout *symptomsLayout;
 
 
     b2Body *body;

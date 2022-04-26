@@ -34,101 +34,11 @@
 background: transparent;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="toggleCanDrop">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>240</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Toggle</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="marioButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>90</y>
-      <width>99</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ibuprofen</string>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="luigiButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>130</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hydrogen Peroxide</string>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="peachButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>99</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Band Aid</string>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="toadButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>210</y>
-      <width>99</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Neosporin</string>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="hintButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>280</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hint</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="nextButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>320</y>
+      <x>20</x>
+      <y>560</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -157,6 +67,16 @@ background: transparent;</string>
      </rect>
     </property>
    </widget>
+   <widget class="QWidget" name="symptomsList" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>70</y>
+      <width>271</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -164,7 +84,7 @@ background: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
