@@ -178,8 +178,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     GameReader* lv = new GameReader(":/text/LevelDataJson.txt");
     std::vector<pair<std::string, Level>> ll = lv->getLevels();
     Level *lvl = &ll[0].second;
-    ui->MainPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
-    ui->MainPopup->hide();
+    ui->StepPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
+    ui->StepPopup->hide();
+    ui->TeachPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
+    ui->TeachPopup->hide();
     loadLevelUI(lvl);
 
 }
@@ -371,29 +373,101 @@ void MainWindow::on_nextButton_clicked()
 void MainWindow::loadLevelUI(Level *level){
     stepsPopLayout = new QVBoxLayout();
     QLabel *stitle = new QLabel();
-    stitle->setText("Steps to Solve a " + QString::fromStdString(level->title) + ":");
+    stitle->setText("Steps to Solve: " + QString::fromStdString(level->title));
+    stitle->setStyleSheet("font-size: 30px; color: rgb(140, 111, 77); font-weight: 700;");
     QGridLayout *gl = new QGridLayout();
     for (int i = 0; i < level->stepsImages.size(); i++)
     {
         QLabel *label = new QLabel();
-        label->setFixedHeight(100);
-        label->setFixedWidth(100);
+        label->setFixedHeight(80);
+        label->setFixedWidth(80);
         QString s = QString::fromStdString(level->stepsImages[i].second);
         QPixmap pixmap(s);
         pixmap = pixmap.scaled(label->size(),Qt::KeepAspectRatio);
         label->setPixmap(pixmap);
-        gl->addWidget(label, i, 0);
+        gl->addWidget(label, i, 0, Qt::AlignCenter);
 
         QLabel *tLabel = new QLabel();
-        tLabel->setStyleSheet("font-size: 20px; color: tan; font-family: 'Fuzzy Bubbles', cursive;");
+        tLabel->setStyleSheet("font-size: 20px; color: rgb(168, 139, 106); font-weight: 600;");
         tLabel->setWordWrap(true);
         tLabel->setText(QString::fromStdString(level->stepsText[i]));
         gl->addWidget(tLabel, i, 1);
     }
 
     stepsPopLayout->addWidget(stitle);
+    stepsPopLayout->setAlignment(Qt::AlignCenter);
+    gl->setAlignment(Qt::AlignCenter);
+    gl->setVerticalSpacing(20);
+    gl->setHorizontalSpacing(10);
     stepsPopLayout->addLayout(gl);
-    stepsPopLayout->addWidget(stitle);
-    ui->MainPopup->setLayout(stepsPopLayout);
-    ui->MainPopup->show();
+
+    QPushButton *nextBtn = new QPushButton();
+    nextBtn->setText("NEXT");
+    nextBtn->setStyleSheet("margin-left: 130px; background-color: green; color: white; font-size: 20px; font-weight: 700; border: none; border-radius: 10px;");
+    nextBtn->setFixedWidth(300);
+    nextBtn->setFixedHeight(50);
+    stepsPopLayout->addWidget(nextBtn);
+    stepsPopLayout->setSpacing(20);
+
+    connect(nextBtn, SIGNAL(clicked()), this, SLOT(toTeach()));
+    ui->StepPopup->setLayout(stepsPopLayout);
+
+
+    // TEACH LAYOUT
+    teachPopLayout = new QVBoxLayout();
+    for (int i = 0; i < level->teachText.size(); i++)
+    {
+        QString str = QString::fromStdString(level->teachText[i]);
+        QStringList list1 = str.split(QLatin1Char(' '));
+        if(list1.count() <= 5)
+        {
+            QLabel *t = new QLabel(str);
+            t->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 30px; color: rgb(140, 111, 77); font-weight: 700;");
+            teachPopLayout->addWidget(t);
+        }
+        else
+        {
+            QLabel *l = new QLabel(str);
+            l->setWordWrap(true);
+            l->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 20px; color: rgb(168, 139, 106); font-weight: 600;");
+            teachPopLayout->addWidget(l);
+        }
+    }
+
+    QHBoxLayout *hl = new QHBoxLayout();
+    for (int i = 0; i < level->teachImages.size(); i++)
+    {
+        QLabel *label = new QLabel();
+        label->setFixedHeight(70);
+        label->setFixedWidth(70);
+        QString s = QString::fromStdString(level->teachImages[i].second);
+        QPixmap pixmap(s);
+        pixmap = pixmap.scaled(label->size(),Qt::KeepAspectRatio);
+        label->setPixmap(pixmap);
+        hl->addWidget(label, Qt::AlignCenter);
+    }
+
+    teachPopLayout->addLayout(hl);
+
+    QPushButton *nextLBtn = new QPushButton();
+    nextLBtn->setText("NEXT LEVEL");
+    nextLBtn->setFixedWidth(150);
+    nextLBtn->setFixedHeight(50);
+    nextLBtn->setStyleSheet("background-color: green; color: white; font-size: 20px; font-weight: 700; border: none; border-radius: 10px;");
+    teachPopLayout->addWidget(nextLBtn);
+    teachPopLayout->setAlignment(nextLBtn, Qt::AlignHCenter);
+
+    ui->TeachPopup->setLayout(teachPopLayout);
+    // NEXT LEVEL BUTTON CONNECT
+
+    //Delete this eventualy
+    ui->StepPopup->show();
+
+
+    //LEVEL SYMPTOMS ??
+}
+
+void MainWindow::toTeach(){
+    ui->StepPopup->hide();
+    ui->TeachPopup->show();
 }

@@ -61,6 +61,7 @@ private:
     QVBoxLayout *teachPopLayout;
 
 
+
     b2Body *body;
 
     QGraphicsPixmapItem *pic;
@@ -76,6 +77,9 @@ private:
 
     void toggleTreatmentCanDrop(bool checked);
     void loadLevelUI(Level *level);
+
+private slots:
+    void toTeach();
 
 };
 #endif // MAINWINDOW_H

@@ -33,7 +33,7 @@
 	   ["band-aid", ":medicines/band-aid"]
       ],
       "teachImages":[
-	   ["neosporin", ":Medicines/neosporin"]
+	   ["neosporin", ":medicines/neosporin"]
       ],
       "medicineToStage":[
 	   ["hydrogen-peroxide", "SK2"],
@@ -43,46 +43,94 @@
       "inOrder": true
    },
    {   
-      "title":"Sunburn",
+      "title":"Headache",
       "stepsText":[
-         "Spreading aloe vera gel over the burnt skin can help reduce inflammation and prevent peeling.",
-         "Taking Ibuprofen provides temporary pain relief.",
-	 "Drinking water helps replace body fluids and replenish electrolytes drawn to the skin’s surface by a sunburn."
+         "Drinking water is vital to remedy a headache.",
+         "A cold pack can help reduce headache.",
+	   "Pain medication is helpful for temporary relief when you have a headache."
       ],
       "teachText":[
-         "Sun Protection/Sunscreen",
-         "When the sun is out, one should always apply some sort of sun protection before going outside. Failing to apply sun protection can result in sunburn. Overtime, overexposure to to the sun can cause premature wrinkling, aging of skin, age spots, and an increased risk of skin cancer."
+         "Pain Medication",
+         "Ibuprofen and Acetaminophen are commonly used for pain relief from a headache. Ibuprofen will target feelings of tension while Acetaminophen will more generally reduce feelings of pain.",
+	   "Headache Causes",
+	   "There is a huge variety of headaches that can be caused by a multitude of stimuli and conditions. Many headaches target a specific region of the head and can be diagnosed and treated more specifically."
       ],
       "symptomsList":[
-         "Red/hot skin",
-         "Pain",
-	 "Blisters",
-	 "Swelling of skin",
-	 "Faintness"
+         "Pain or ache in the head"
       ],
       "validTreatments":[
-         "aloe-vera",
-         "ibuprofen",
-	   "water"
+         "water",
+         "cold-pack",
+	   "Ibuprofen",
+	   "acetaminophen"
       ],
       "patientStagesImages":[
-	   ["SB1", ":Stages/SB1"],
-	   ["SB2", ":Stages/SB2"],
-	   ["SB3", ":Stages/SB3"]
+	   ["HA1", ":Stages/HA1"],
+	   ["HA2", ":Stages/HA2"],
+	   ["HA3", ":Stages/HA3"]
       ],
       "stepsImages":[
 	   ["ibuprofen", ":medicines/ibuprofen"],
-	   ["aloe-vera", ":medicines/aloe-vera"],
-	   ["water", ":medicines/water"]
+	   ["cold-pack", ":medicines/cold-pack"],
+	   ["water", ":medicines/water"],
+	   ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "teachImages":[
-	   ["sunscreen", ":Extra/sunscreen"],
-	   ["water", ":medicines/water"]
+	   ["ibuprofen", ":medicines/ibuprofen"],
+	   ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "medicineToStage":[
 	   ["none", "none"]
       ],
       "inOrder": false
-   }
+   },
 
+   {   
+      "title":"Sprained Ankle",
+      "stepsText":[
+         "The first steps to treating a sprained ankle is to apply ice or something cold to reduce swelling and inflammation.",
+         "Second, compress the ankle using a compression wrap to help decrease swelling and provide stability to the ankle by immobilizing it.",
+	   "Finally, take pain medication to get rid of pain. Ibuprofen is used most for swelling and inflammation."
+      ],
+      "teachText":[
+         "What is R.I.C.E.?",
+         "R.I.C.E. stands for rest, ice, compression, and elevation, and taking these simple steps following a strain, sprain, or other similar injury can help you more quickly recover and get back to everyday activities.",
+         "Anti-inflammatory Medication",
+	   "Anti-inflammatory drugs can help reduce inflammation, which often helps to relieve pain. A common example is ibuprofen (Advil, Motrin, Midol) or naproxen (Aleve, Naprosyn).", 
+	   "You probably have some of these in your cupboads at home!"
+	],
+      "symptomsList":[
+         "Pain, especially when you bear weight on the affected foot",
+         "Tenderness when you touch the ankle",
+	   "Swelling",
+	   "Bruising",
+	   "Restricted range of motion"
+      ],
+      "validTreatments":[
+         "cold-pack",
+         "bandage",
+	   "ibuprofen"
+      ],
+      "patientStagesImages":[
+	   ["SA1", ":Stages/SA1"],
+	   ["SA2", ":Stages/SA2"],
+	   ["SA3", ":Stages/SA3"],
+	   ["H", ":Stages/SA4"]
+      ],
+      "stepsImages":[
+	   ["cold-pack", ":medicines/cold-pack"],
+	   ["bandage", ":medicines/bandage"],
+	   ["ibuprofen", ":medicines/ibuprofen"]
+      ],
+      "teachImages":[
+	   ["ibuprofen", ":medicines/ibuprofen"],
+	   ["cold-pack", ":medicines/cold-pack"]
+      ],
+      "medicineToStage":[
+	   ["cold-pack", "SA2"],
+	   ["bandage", "SP3"],
+	   ["ibuprofen", "H"]
+      ],
+      "inOrder": true
+   }
 ]
