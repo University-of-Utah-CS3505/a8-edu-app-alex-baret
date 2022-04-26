@@ -19,7 +19,8 @@ Model::Model(QObject *parent)
 
 //=== loading levels ===//
 
-GameReader* levels = new GameReader(":/text/JsonExample_1.txt");
+
+GameReader* levels = new GameReader(":/text/LevelDataJson.txt");
 levelList = levels->getLevels();
 currentLevel = &levelList[0].second;
 

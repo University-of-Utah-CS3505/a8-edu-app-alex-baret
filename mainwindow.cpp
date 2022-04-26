@@ -36,26 +36,26 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // ======== Create all inital 'treatments' ======== //
 
     //first shelf (left to right)
-    createTreatment("coldPack", ":/medicines/cold-pack.png", 160, -85, 50, 62);
-    createTreatment("peptoBismol", ":/medicines/pepto-bismol.png", 190, -85, 50, 62);
+    createTreatment("cold-pack", ":/medicines/cold-pack.png", 160, -85, 50, 62);
+    createTreatment("pepto-bismol", ":/medicines/pepto-bismol.png", 190, -85, 50, 62);
     createTreatment("water", ":/medicines/water.png", 220, -85, 50, 62);
     createTreatment("neosporin", ":/medicines/neosporin.png", 250, -85, 50, 62);
 
     //second shelf (left to right)
       createTreatment("allergy" , ":/medicines/allergy.png" , 160, -20, 50, 62 );
-      createTreatment("aloeVera",":/medicines/aloe-vera.png", 190, -20, 50, 62 );
+      createTreatment("aloe-vera",":/medicines/aloe-vera.png", 190, -20, 50, 62 );
       createTreatment("bandage" , ":/medicines/bandage.png", 220, -20, 50, 62);
-      createTreatment("bandAid", ":/medicines/band-aid.png", 250, -20, 50, 62);
+      createTreatment("band-aid", ":/medicines/band-aid.png", 250, -20, 50, 62);
     //third shelf (left to right)
-      createTreatment("coughDrops", ":/medicines/cough-drops.png", 160, 35, 50, 62);
-      createTreatment("hotPack", ":/medicines/hot-pack.png", 190, 35, 50, 62);
-      createTreatment("hydrogenPeroxide", ":/medicines/hydrogen-peroxide.png", 220, 35, 50, 62);
+      createTreatment("cough-drops", ":/medicines/cough-drops.png", 160, 35, 50, 62);
+      createTreatment("hot-pack", ":/medicines/hot-pack.png", 190, 35, 50, 62);
+      createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 220, 35, 50, 62);
      createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 250, 35, 50, 62);
       //fourth shelf (left to right)
-     createTreatment("naselSpray", ":/medicines/nasel-spray.png", 160, 100, 50, 62);
+     createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 160, 100, 50, 62);
 
 
-    // ======== Box2D initial settings ======== //
+    // ======== Box2D initial settings ========
 
     // Define the gravity vector.
     b2Vec2 gravity(0.0f, -10.0f);
@@ -374,7 +374,7 @@ void MainWindow::loadLevelUI(Level *level){
     stepsPopLayout = new QVBoxLayout();
     QLabel *stitle = new QLabel();
     stitle->setText("Steps to Solve: " + QString::fromStdString(level->title));
-    stitle->setStyleSheet("font-size: 30px; color: rgb(140, 111, 77); font-weight: 700;");
+    stitle->setStyleSheet("font-size: 25px; color: rgb(140, 111, 77); font-weight: 700;");
     QGridLayout *gl = new QGridLayout();
     for (int i = 0; i < level->stepsImages.size(); i++)
     {
@@ -388,7 +388,7 @@ void MainWindow::loadLevelUI(Level *level){
         gl->addWidget(label, i, 0, Qt::AlignCenter);
 
         QLabel *tLabel = new QLabel();
-        tLabel->setStyleSheet("font-size: 20px; color: rgb(168, 139, 106); font-weight: 600;");
+        tLabel->setStyleSheet("font-size: 15px; color: rgb(168, 139, 106); font-weight: 600;");
         tLabel->setWordWrap(true);
         tLabel->setText(QString::fromStdString(level->stepsText[i]));
         gl->addWidget(tLabel, i, 1);
@@ -422,14 +422,14 @@ void MainWindow::loadLevelUI(Level *level){
         if(list1.count() <= 5)
         {
             QLabel *t = new QLabel(str);
-            t->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 30px; color: rgb(140, 111, 77); font-weight: 700;");
+            t->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 25px; color: rgb(140, 111, 77); font-weight: 700;");
             teachPopLayout->addWidget(t);
         }
         else
         {
             QLabel *l = new QLabel(str);
             l->setWordWrap(true);
-            l->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 20px; color: rgb(168, 139, 106); font-weight: 600;");
+            l->setStyleSheet("margin: 0px 50px 0px 50px; font-size: 15px; color: rgb(168, 139, 106); font-weight: 600;");
             teachPopLayout->addWidget(l);
         }
     }
