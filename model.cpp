@@ -46,7 +46,7 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
         // if name of caller matches one of the valid treatment names, treatment is valid and patient sprite should be changed
         for (string t : currentLevel->validTreatments){
             if (t == nameOfCaller){
-                if (newPatient->stage < (int) currentLevel->patientStagesImages.size()-1){
+                if (currentLevel->patientStagesImages[newPatient->stage+1].first != "H"){
                     std::cout << "   VALID TREATMENT" << std::endl;
                     newPatient->stage++;
                     newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage].second));
@@ -54,11 +54,12 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
                     caller->setPos(5000,-5000);
                     return;
                 }
-                else if (newPatient->stage >= (int) currentLevel->patientStagesImages.size()-1){
+                else if (currentLevel->patientStagesImages[newPatient->stage+1].first == "H"){
                     std::cout << "   LEVEL COMPLETED" << std::endl;
-                    newPatient->image.load(QString::fromStdString(":/medicines/patient-basic"));
+                    levelPassed->setText("Good Job! You passed the Level!");
+                    newPatient->image.load(QString::fromStdString(currentLevel->patientStagesImages[newPatient->stage+1].second));
                     newPatient->update();
-                    QTimer::singleShot(2000, this, &Model::loadNextLevel);
+                    QTimer::singleShot(2000, this, &Model::EmitShowPop);
                     caller->setPos(5000,-5000);
                     return;
                 }
@@ -70,13 +71,19 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
         }
         else {
             std::cout << "   LEVEL FAILED" << std::endl;
-            QTimer::singleShot(2000, this, &Model::loadNextLevel);
+            levelPassed->setText("Not quite! Here are the steps to solve.");
+            QTimer::singleShot(2000, this, &Model::EmitShowPop);
         }
     }
 
 }
 
+void Model::EmitShowPop(){
+    emit showPopSignal();
+}
+
 void Model::loadLevel(){
+    emit loadUI();
     //loop through the valid treatments at set the flag in the associating MySquare object as 'won't fall'
     for(auto treatment : currentLevel->validTreatments){
         treatments.at(treatment)->canDrop = false;

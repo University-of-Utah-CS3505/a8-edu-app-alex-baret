@@ -22,14 +22,10 @@
         <file>pepto-bismol.png</file>
         <file>water.png</file>
         <file>background</file>
-        <file>patient-basic</file>
         <file>hot-pack2.png</file>
+        <file>patient-basic.png</file>
     </qresource>
     <qresource prefix="/Stages">
-        <file>SK1.png</file>
-        <file>SK2.png</file>
-        <file>SK3.png</file>
-        <file>SK4.png</file>
         <file>SA1.png</file>
         <file>SA2.png</file>
         <file>SA3.png</file>
@@ -37,5 +33,9 @@
         <file>HA1.png</file>
         <file>HA2.png</file>
         <file>HA3.png</file>
+        <file>SK1.png</file>
+        <file>SK2.png</file>
+        <file>SK3.png</file>
+        <file>SK4.png</file>
     </qresource>
 </RCC>

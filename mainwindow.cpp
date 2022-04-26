@@ -169,20 +169,25 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
             this,
             &MainWindow::on_nextButton_clicked);
 
+    connect(mainModel,
+            &Model::loadUI,
+            this,
+            &MainWindow::loadLevelUI);
+
+    connect(mainModel,
+            &Model::showPopSignal,
+            this,
+            &MainWindow::showPopup);
+
 
 
     mainModel->loadLevel();
 
 
-
-    GameReader* lv = new GameReader(":/text/LevelDataJson.txt");
-    std::vector<pair<std::string, Level>> ll = lv->getLevels();
-    Level *lvl = &ll[0].second;
     ui->StepPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
     ui->StepPopup->hide();
     ui->TeachPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
     ui->TeachPopup->hide();
-    loadLevelUI(lvl);
 
 }
 
@@ -323,14 +328,14 @@ void MainWindow::on_toggleCanDrop_clicked()
         mainModel->setTreatmentCanDrop("ibuprofen" , false);
     }
     if(ui->luigiButton->isChecked()){
-        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , true);
+        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , true);
     }else{
-        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , false);
+        mainModel->setTreatmentCanDrop("hydrogen-peroxide" , false);
     }
     if(ui->peachButton->isChecked()){
-        mainModel->setTreatmentCanDrop("bandAid" , true);
+        mainModel->setTreatmentCanDrop("band-aid" , true);
     }else{
-        mainModel->setTreatmentCanDrop("bandAid" , false);
+        mainModel->setTreatmentCanDrop("band-aid" , false);
     }
     if(ui->toadButton->isChecked()){
         mainModel->setTreatmentCanDrop("neosporin", true);
@@ -370,7 +375,8 @@ void MainWindow::on_nextButton_clicked()
 }
 
 
-void MainWindow::loadLevelUI(Level *level){
+void MainWindow::loadLevelUI(){
+    Level *level = mainModel->currentLevel;
     stepsPopLayout = new QVBoxLayout();
     QLabel *stitle = new QLabel();
     stitle->setText("Steps to Solve: " + QString::fromStdString(level->title));
@@ -394,6 +400,8 @@ void MainWindow::loadLevelUI(Level *level){
         gl->addWidget(tLabel, i, 1);
     }
 
+    mainModel->levelPassed->setStyleSheet("font-size: 15px; color: rgb(168, 139, 106); font-weight: 600;");
+    stepsPopLayout->addWidget(mainModel->levelPassed);
     stepsPopLayout->addWidget(stitle);
     stepsPopLayout->setAlignment(Qt::AlignCenter);
     gl->setAlignment(Qt::AlignCenter);
@@ -461,13 +469,14 @@ void MainWindow::loadLevelUI(Level *level){
     // NEXT LEVEL BUTTON CONNECT
 
     //Delete this eventualy
-    ui->StepPopup->show();
-
-
-    //LEVEL SYMPTOMS ??
+    //ui->StepPopup->show();
 }
 
 void MainWindow::toTeach(){
     ui->StepPopup->hide();
     ui->TeachPopup->show();
+}
+
+void MainWindow::showPopup(){
+    ui->StepPopup->show();
 }

@@ -67,7 +67,8 @@
       "patientStagesImages":[
 	   ["HA1", ":Stages/HA1"],
 	   ["HA2", ":Stages/HA2"],
-	   ["HA3", ":Stages/HA3"]
+           ["HA3", ":Stages/HA3"],
+           ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
 	   ["ibuprofen", ":medicines/ibuprofen"],
