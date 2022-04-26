@@ -12,6 +12,7 @@ Patient::Patient(std::string imagePath, std::string name)
     QString QImagePath =  QString::fromStdString(imagePath); //converts image path to QString
     image.load(QImagePath); //loads QString image path to this square's pixmap
     this->name = name;
+    this->setPos(-150,-200);
 }
 
 /**
@@ -21,7 +22,7 @@ Patient::Patient(std::string imagePath, std::string name)
  */
 QRectF Patient::boundingRect() const
 {
-    return QRectF(0,0,400,600); //outer-most edge of the shape
+    return QRectF(0,0,300,500); //outer-most edge of the shape
 }
 
 /**
@@ -33,7 +34,7 @@ QRectF Patient::boundingRect() const
  */
 void Patient::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(-150,-200,300,500,image);
+    painter->drawPixmap(0,0,300,500,image);
     if(pressed)
     {
         setFlag(GraphicsItemFlag::ItemIsMovable,true);
