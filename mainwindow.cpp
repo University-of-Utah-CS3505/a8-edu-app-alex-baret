@@ -156,14 +156,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                &Model::handleIncorrectAnswer);
        }
 
-
-
-
-    connect(ui->toggleCanDrop,
-            &QPushButton::clicked,
-            this,
-            &MainWindow::on_toggleCanDrop_clicked);
-
     connect(ui->nextButton,
             &QPushButton::clicked,
             this,
@@ -177,12 +169,15 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
 
     GameReader* lv = new GameReader(":/text/LevelDataJson.txt");
     std::vector<pair<std::string, Level>> ll = lv->getLevels();
-    Level *lvl = &ll[0].second;
+    Level *lvl = &ll[2].second;
     ui->StepPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
     ui->StepPopup->hide();
     ui->TeachPopup->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
+
     ui->TeachPopup->hide();
     loadLevelUI(lvl);
+
+    ui->symptomsList->setStyleSheet("background-color: rgb(249, 233, 216); border-radius: 30px;");
 
 }
 
@@ -313,32 +308,6 @@ void MainWindow::startDroppingTreatment(float x, float height)
 }
 
 
-
-
-void MainWindow::on_toggleCanDrop_clicked()
-{
-    if(ui->marioButton->isChecked()){
-        mainModel->setTreatmentCanDrop("ibuprofen" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("ibuprofen" , false);
-    }
-    if(ui->luigiButton->isChecked()){
-        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("hydrogenPeroxide" , false);
-    }
-    if(ui->peachButton->isChecked()){
-        mainModel->setTreatmentCanDrop("bandAid" , true);
-    }else{
-        mainModel->setTreatmentCanDrop("bandAid" , false);
-    }
-    if(ui->toadButton->isChecked()){
-        mainModel->setTreatmentCanDrop("neosporin", true);
-    }else{
-        mainModel->setTreatmentCanDrop("neosporin", false);
-    }
-}
-
 /**
  * Resets the size of the GraphicView's scene.  Used to repaint the scene so that treatments overlapping the patient don't paint over the patient.
  * @brief MainWindow::resetSceneSize
@@ -464,7 +433,34 @@ void MainWindow::loadLevelUI(Level *level){
     ui->StepPopup->show();
 
 
-    //LEVEL SYMPTOMS ??
+    //LEVEL SYMPTOMS
+    //level title
+
+    //symptoms title
+    symptomsLayout = new QVBoxLayout();
+
+    QString symptomsTitle = QString::fromStdString(level->title + "\n" + "Symptoms");
+    QLabel *symptomsLabelTitle = new QLabel(symptomsTitle);
+    symptomsLabelTitle->setWordWrap(true);
+    symptomsLabelTitle->setStyleSheet("margin: 0px 25px 0px 25px; font-size: 20px; color: rgb(140, 111, 77); font-weight: 700;");
+    symptomsLayout->addWidget(symptomsLabelTitle);
+
+    for (string symptom : level->symptomsList){
+        cout << symptom << endl;
+        QString str = QString::fromStdString(symptom);
+        QStringList list1 = str.split(QLatin1Char(' '));
+
+        QLabel *symptomsLabel = new QLabel(str);
+        symptomsLabel->setWordWrap(true);
+        symptomsLabel->setStyleSheet("margin: 0px 25px 0px 25px; font-size: 14px; color: rgb(140, 111, 77); font-weight: 700;");
+        symptomsLayout->addWidget(symptomsLabel);
+    }
+
+    ui->symptomsList->setLayout(symptomsLayout);
+
+
+
+
 }
 
 void MainWindow::toTeach(){

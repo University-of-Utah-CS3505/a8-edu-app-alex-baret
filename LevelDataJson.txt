@@ -13,8 +13,10 @@
          "Make sure you sterilize your cut to further protect against infection!"
 	],
       "symptomsList":[
-         "Cut in the skin on knees and hands",
-	   "Potential debris in scratch"
+         "Skinned knees can sting or hurt.",
+         "They may look bright red with scraped areas.",
+         "They may have the appearance of an open wound.",
+         "They may also bleed."
       ],
       "validTreatments":[
          "hydrogen-peroxide",
@@ -56,7 +58,11 @@
 	   "There is a huge variety of headaches that can be caused by a multitude of stimuli and conditions. Many headaches target a specific region of the head and can be diagnosed and treated more specifically."
       ],
       "symptomsList":[
-         "Pain or ache in the head"
+      "Slow onset of the headache.",
+      "Head usually hurts on both sides.",
+      "Pain is dull or feels like a band or vice around the head.",
+      "Pain may involve the back part of the head or neck.",
+      "Pain is mild to moderate, but not severe."
       ],
       "validTreatments":[
          "water",
@@ -100,11 +106,12 @@
 	   "You probably have some of these in your cupboads at home!"
 	],
       "symptomsList":[
-         "Pain, especially when you bear weight on the affected foot",
-         "Tenderness when you touch the ankle",
-	   "Swelling",
-	   "Bruising",
-	   "Restricted range of motion"
+      "Pain, especially when you bear weight on the affected foot.",
+      "Tenderness when you touch the ankle.",
+      "Swelling.",
+      "Bruising.",
+      "Restricted range of motion.",
+      "Instability in the ankle."
       ],
       "validTreatments":[
          "cold-pack",
