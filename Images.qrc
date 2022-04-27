@@ -37,5 +37,19 @@
         <file>SK2.png</file>
         <file>SK3.png</file>
         <file>SK4.png</file>
+        <file>A1.png</file>
+        <file>A2.png</file>
+        <file>A3.png</file>
+        <file>A4.png</file>
+        <file>SB1.png</file>
+        <file>SB2.png</file>
+        <file>SB3.png</file>
+        <file>SF1.png</file>
+        <file>SF2.png</file>
+        <file>SF3.png</file>
+        <file>SF4.png</file>
+        <file>ST1.png</file>
+        <file>ST2.png</file>
+        <file>ST3.png</file>
     </qresource>
 </RCC>
