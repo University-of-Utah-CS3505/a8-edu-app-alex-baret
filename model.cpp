@@ -112,6 +112,7 @@ void Model::loadLevel(){
     newPatient->update();
 
     //set currently needed treatment
+    neededTreatment.clear();
     if (!currentLevel->inOrder){
         neededTreatment = currentLevel->validTreatments;
     }

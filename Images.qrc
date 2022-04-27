@@ -17,7 +17,6 @@
         <file>hydrogen-peroxide.png</file>
         <file>ibuprofen.png</file>
         <file>level-small-bg.png</file>
-        <file>nasel-spray.png</file>
         <file>neosporin.png</file>
         <file>pepto-bismol.png</file>
         <file>water.png</file>
@@ -25,6 +24,7 @@
         <file>hot-pack2.png</file>
         <file>patient-basic.png</file>
         <file>mask.png</file>
+        <file>nasal-spray.png</file>
     </qresource>
     <qresource prefix="/Stages">
         <file>SA1.png</file>

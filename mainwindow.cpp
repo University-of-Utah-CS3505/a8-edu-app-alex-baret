@@ -49,7 +49,7 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     //third shelf (left to right)
       createTreatment("cough-drops", ":/medicines/cough-drops.png", 145, 30, 60, 80);
       createTreatment("hot-pack", ":/medicines/hot-pack.png", 182, 32, 80, 80);
-      createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 235, 25, 40, 90);
+      createTreatment("nasal-spray", ":/medicines/nasal-spray.png", 235, 25, 40, 90);
      createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 265, 25, 70, 90);
       //fourth shelf (left to right)
      createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 145, 120, 50, 125);
