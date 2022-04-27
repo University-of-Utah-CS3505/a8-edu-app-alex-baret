@@ -24,6 +24,7 @@
         <file>background</file>
         <file>hot-pack2.png</file>
         <file>patient-basic.png</file>
+        <file>mask.png</file>
     </qresource>
     <qresource prefix="/Stages">
         <file>SA1.png</file>
@@ -51,5 +52,10 @@
         <file>ST1.png</file>
         <file>ST2.png</file>
         <file>ST3.png</file>
+    </qresource>
+    <qresource prefix="/Extra">
+        <file>banana.png</file>
+        <file>sunscreen.png</file>
+        <file>toast.png</file>
     </qresource>
 </RCC>

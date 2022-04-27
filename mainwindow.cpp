@@ -54,6 +54,8 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
       //fourth shelf (left to right)
      createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 145, 120, 50, 125);
      createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 190, 100, 70, 90);
+     createTreatment("mask", ":/medicines/mask.png", 240, 110, 80, 50);
+
 
     // ======== Box2D initial settings ========
 
@@ -493,8 +495,10 @@ void MainWindow::clearLayout(QLayout* layout, bool deleteWidgets)
     {
         if (deleteWidgets)
         {
-            if (QWidget* widget = item->widget())
-                widget->deleteLater();
+            if (QWidget* widget = item->widget()){
+                if (widget != mainModel->levelPassed)
+                    widget->deleteLater();
+            }
         }
         if (QLayout* childLayout = item->layout())
             clearLayout(childLayout, deleteWidgets);
