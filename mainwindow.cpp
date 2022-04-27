@@ -36,9 +36,9 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // ======== Create all inital 'treatments' ======== //
 
     //first shelf (left to right)
-    createTreatment("cold-pack", ":/medicines/cold-pack.png", 143, -90, 80, 80);
+    createTreatment("cold-pack", ":/medicines/cold-pack.png", 145, -87, 80, 80);
     createTreatment("pepto-bismol", ":/medicines/pepto-bismol.png", 190, -105, 45, 110);
-    createTreatment("water", ":/medicines/water.png", 227, -87, 60, 70);
+    createTreatment("water", ":/medicines/water.png", 225, -87, 60, 70);
     createTreatment("neosporin", ":/medicines/neosporin.png", 270, -92, 55, 80);
 
     //second shelf (left to right)
@@ -258,7 +258,7 @@ void MainWindow::updateWorld(){
    }
    else{
        //reset the b2Body to have zero velocity
-       body->SetLinearVelocity(b2Vec2(0,0)); 
+       body->SetLinearVelocity(b2Vec2(0,0));
 
        //reset the current treatment to empty
        mainModel->currentTreatment.second = "empty";

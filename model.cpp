@@ -112,6 +112,7 @@ void Model::loadLevel(){
     newPatient->update();
 
     //set currently needed treatment
+    neededTreatment.clear();
     if (!currentLevel->inOrder){
         neededTreatment = currentLevel->validTreatments;
     }
@@ -126,7 +127,6 @@ void Model::loadLevel(){
     wrongGuesses = 0;
 
     //do other stuff
-    neededTreatment.clear();
 }
 
 void Model::setTreatmentCanDrop(std::string name, bool canDrop){
@@ -186,4 +186,3 @@ void Model::handleIncorrectAnswer()
     wrongGuesses++;
     showHint();
 }
-

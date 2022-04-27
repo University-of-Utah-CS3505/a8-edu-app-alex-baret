@@ -4,14 +4,14 @@
       "stepsText":[
          "First you have to clean the wound using some kind of cleaning methods like Hydrogen Peroxide, Rubbing Alcohol, or soap and water",
          "Next, tap a bit of Neosporin on the scratch. Neosporin is an antibiotic gel to prevent infection.",
-	   "Finally, apply a band-aid to shield debris and cover the wound."
+           "Finally, apply a band-aid to shield debris and cover the wound."
       ],
       "teachText":[
          "What are antibiotics?",
-	   "Antibiotics are medicines that fight infections caused by bacteria",
+           "Antibiotics are medicines that fight infections caused by bacteria",
          "Topical antibacterials, like neosporin, are a class of medications used to prevent and treat infections caused by bacteria and minor skin infections caused by cuts, scrapes, and burns.",
          "Make sure you sterilize your cut to further protect against infection!"
-	],
+        ],
       "symptomsList":[
          "Skinned knees can sting or hurt.",
          "They may look bright red with scraped areas.",
@@ -21,41 +21,41 @@
       "validTreatments":[
          "hydrogen-peroxide",
          "neosporin",
-	   "band-aid"
+           "band-aid"
       ],
       "patientStagesImages":[
-	   ["SK1", ":Stages/SK1"],
-	   ["SK2", ":Stages/SK2"],
-	   ["SK3", ":Stages/SK3"],
-	   ["H", ":Stages/SK4"]
+           ["SK1", ":Stages/SK1"],
+           ["SK2", ":Stages/SK2"],
+           ["SK3", ":Stages/SK3"],
+           ["H", ":Stages/SK4"]
       ],
       "stepsImages":[
-	   ["hydrogen-peroxide", ":medicines/hydrogen-peroxide"],
-	   ["neosporin", ":medicines/neosporin"],
-	   ["band-aid", ":medicines/band-aid"]
+           ["hydrogen-peroxide", ":medicines/hydrogen-peroxide"],
+           ["neosporin", ":medicines/neosporin"],
+           ["band-aid", ":medicines/band-aid"]
       ],
       "teachImages":[
-	   ["neosporin", ":medicines/neosporin"]
+           ["neosporin", ":medicines/neosporin"]
       ],
       "medicineToStage":[
-	   ["hydrogen-peroxide", "SK2"],
-	   ["neosporin", "SK3"],
-	   ["band-aid", "H"]
+           ["hydrogen-peroxide", "SK2"],
+           ["neosporin", "SK3"],
+           ["band-aid", "H"]
       ],
       "inOrder": true
    },
-   {   
+   {
       "title":"Headache",
       "stepsText":[
          "Drinking water is vital to remedy a headache.",
          "A cold pack can help reduce headache.",
-	   "Pain medication is helpful for temporary relief when you have a headache."
+           "Pain medication is helpful for temporary relief when you have a headache."
       ],
       "teachText":[
          "Pain Medication",
          "Ibuprofen and Acetaminophen are commonly used for pain relief from a headache. Ibuprofen will target feelings of tension while Acetaminophen will more generally reduce feelings of pain.",
-	   "Headache Causes",
-	   "There is a huge variety of headaches that can be caused by a multitude of stimuli and conditions. Many headaches target a specific region of the head and can be diagnosed and treated more specifically."
+           "Headache Causes",
+           "There is a huge variety of headaches that can be caused by a multitude of stimuli and conditions. Many headaches target a specific region of the head and can be diagnosed and treated more specifically."
       ],
       "symptomsList":[
       "Slow onset of the headache.",
@@ -71,15 +71,15 @@
            "acetaminophen"
       ],
       "patientStagesImages":[
-	   ["HA1", ":Stages/HA1"],
-	   ["HA2", ":Stages/HA2"],
+           ["HA1", ":Stages/HA1"],
+           ["HA2", ":Stages/HA2"],
            ["HA3", ":Stages/HA3"],
            ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
            ["ibuprofen", ":medicines/ibuprofen"],
-	   ["cold-pack", ":medicines/cold-pack"],
-	   ["water", ":medicines/water"],
+           ["cold-pack", ":medicines/cold-pack"],
+           ["water", ":medicines/water"],
            ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "teachImages":[
@@ -87,24 +87,24 @@
            ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "medicineToStage":[
-	   ["none", "none"]
+           ["none", "none"]
       ],
       "inOrder": false
    },
-   {   
+   {
       "title":"Sprained Ankle",
       "stepsText":[
          "The first steps to treating a sprained ankle is to apply ice or something cold to reduce swelling and inflammation.",
          "Second, compress the ankle using a compression wrap to help decrease swelling and provide stability to the ankle by immobilizing it.",
-	   "Finally, take pain medication to get rid of pain. Ibuprofen is used most for swelling and inflammation."
+           "Finally, take pain medication to get rid of pain. Ibuprofen is used most for swelling and inflammation."
       ],
       "teachText":[
          "What is R.I.C.E.?",
          "R.I.C.E. stands for rest, ice, compression, and elevation, and taking these simple steps following a strain, sprain, or other similar injury can help you more quickly recover and get back to everyday activities.",
          "Anti-inflammatory Medication",
-	   "Anti-inflammatory drugs can help reduce inflammation, which often helps to relieve pain. A common example is ibuprofen (Advil, Motrin, Midol) or naproxen (Aleve, Naprosyn).", 
-	   "You probably have some of these in your cupboads at home!"
-	],
+           "Anti-inflammatory drugs can help reduce inflammation, which often helps to relieve pain. A common example is ibuprofen (Advil, Motrin, Midol) or naproxen (Aleve, Naprosyn).",
+           "You probably have some of these in your cupboads at home!"
+        ],
       "symptomsList":[
       "Pain, especially when you bear weight on the affected foot.",
       "Tenderness when you touch the ankle.",
@@ -116,27 +116,27 @@
       "validTreatments":[
          "cold-pack",
          "bandage",
-	   "ibuprofen"
+           "ibuprofen"
       ],
       "patientStagesImages":[
-	   ["SA1", ":Stages/SA1"],
-	   ["SA2", ":Stages/SA2"],
-	   ["SA3", ":Stages/SA3"],
-	   ["H", ":Stages/SA4"]
+           ["SA1", ":Stages/SA1"],
+           ["SA2", ":Stages/SA2"],
+           ["SA3", ":Stages/SA3"],
+           ["H", ":Stages/SA4"]
       ],
       "stepsImages":[
-	   ["cold-pack", ":medicines/cold-pack"],
-	   ["bandage", ":medicines/bandage"],
-	   ["ibuprofen", ":medicines/ibuprofen"]
+           ["cold-pack", ":medicines/cold-pack"],
+           ["bandage", ":medicines/bandage"],
+           ["ibuprofen", ":medicines/ibuprofen"]
       ],
       "teachImages":[
-	   ["ibuprofen", ":medicines/ibuprofen"],
-	   ["cold-pack", ":medicines/cold-pack"]
+           ["ibuprofen", ":medicines/ibuprofen"],
+           ["cold-pack", ":medicines/cold-pack"]
       ],
       "medicineToStage":[
-	   ["cold-pack", "SA2"],
-	   ["bandage", "SP3"],
-	   ["ibuprofen", "H"]
+           ["cold-pack", "SA2"],
+           ["bandage", "SP3"],
+           ["ibuprofen", "H"]
       ],
       "inOrder": true
    },
