@@ -27,6 +27,7 @@ public:
 
     void setTreatmentCanDrop(std::string name, bool canDrop);
     void showHint();
+    void collisionHelper(MySquare* caller);
     QLabel *levelPassed = new QLabel("QLabel text.");
 
 signals:
