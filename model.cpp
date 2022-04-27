@@ -126,6 +126,7 @@ void Model::loadLevel(){
     wrongGuesses = 0;
 
     //do other stuff
+    neededTreatment.clear();
 }
 
 void Model::setTreatmentCanDrop(std::string name, bool canDrop){

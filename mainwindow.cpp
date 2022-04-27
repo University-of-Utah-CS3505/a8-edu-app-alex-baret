@@ -47,13 +47,13 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
       createTreatment("bandage" , ":/medicines/bandage.png", 230, -24, 65, 70);
       createTreatment("band-aid", ":/medicines/band-aid.png", 270, -25, 60, 72);
     //third shelf (left to right)
-      createTreatment("cough-drops", ":/medicines/cough-drops.png", 145, 30, 60, 80);
-      createTreatment("hot-pack", ":/medicines/hot-pack.png", 182, 32, 80, 80);
-      createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 235, 25, 40, 90);
-     createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 265, 25, 70, 90);
+      createTreatment("cough-drops", ":/medicines/cough-drops.png", 145, 30, 70, 80);
+      createTreatment("hot-pack", ":/medicines/hot-pack.png", 190, 35, 80, 80);
+      createTreatment("nasal-spray", ":/medicines/nasal-spray.png", 235, 25, 40, 90);
+      createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 265, 25, 70, 90);
       //fourth shelf (left to right)
-     createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 145, 120, 50, 125);
-     createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 190, 100, 70, 90);
+     createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 147, 78, 50, 115);
+     createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 184, 88, 70, 90);
      createTreatment("mask", ":/medicines/mask.png", 240, 110, 80, 50);
 
 
