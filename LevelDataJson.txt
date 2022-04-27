@@ -91,7 +91,6 @@
       ],
       "inOrder": false
    },
-
    {   
       "title":"Sprained Ankle",
       "stepsText":[
@@ -140,5 +139,200 @@
 	   ["ibuprofen", "H"]
       ],
       "inOrder": true
+   },
+   {
+      "title":"Seasonal Allergy",
+      "stepsText":[
+         "Allergy medicine is the first step in reducing the symptoms of seasonal allergy.",
+         "Nasal spray can then be used to decongest the nose and limit irritation.",
+           "Finally, wearing a mask prevents many of the allergy triggers from entering your body in the first place."
+      ],
+      "teachText":[
+         "Allergy Medicine",
+         "Allergy Medicine typically use antihistamines which work by blocking the effects of histamine, the substance in your body responsible for most allergy symptoms.",
+           "Pollen Regulation",
+           "Seasonal allergies are caused by airborne substances such as pollen. Standard surgical masks can filter particles larger than 3 microns. These masks should suffice to filter most pollen which is typically 10 microns or larger."
+      ],
+      "symptomsList":[
+         "Congestion and nasal stuffiness",
+           "Coughing",
+           "Fatigue",
+           "Headache",
+           "Itchy throat, nose and eyes",
+           "Runny nose and sneezing",
+           "Sinus pressure around the nose and cheeks",
+           "Sore throat aggravated by mucus"
+      ],
+      "validTreatments":[
+         "mask",
+         "allergy",
+         "nasal-spray"
+      ],
+      "patientStagesImages":[
+           ["A1", ":Stages/A1"],
+           ["A2", ":Stages/A2"],
+           ["A3", ":Stages/A3"],
+           ["H", ":Stages/A4"]
+      ],
+      "stepsImages":[
+           ["mask", ":medicines/mask"],
+           ["allergy", ":medicines/allergy"],
+           ["nasal-spray", ":medicines/nasal-spray"]
+      ],
+      "teachImages":[
+           ["mask", ":medicines/mask"],
+           ["allergy", ":medicines/allergy"],
+           ["nasal-spray", ":medicines/nasal-spray"]
+      ],
+      "medicineToStage":[
+           ["allergy", "A2"],
+           ["nasal-spray", "A3"],
+           ["mask", "H"]
+      ],
+      "inOrder": true
+   },
+   {
+      "title":"Flu",
+      "stepsText":[
+         "When you have the flu make sure you have plenty of fluids. Because you are losing so much water vomiting, sweating, etc. it is important to stay hydrated so your body can better fight the flu.",
+         "To help with flu symptoms, use the medication acetaminophen. Acetaminophen seems to work on the parts of the brain that perceive pain and control body temperature. A common example is Tylenol.",
+         "A common symptom of the flu is a cough and sore throat. A cough drop, also known as a throat lozenge, is a medicated tablet intended to be dissolved slowly in the mouth to temporarily stop coughs, lubricate, and soothe irritated tissues of the throat.",
+         "To combat the symptom of a fever, apply cold pack to forehead to reduce heat."
+      ],
+      "teachText":[
+         "Bed Rest",
+         "The best thing that treats the flu is rest and time.",
+         "The best thing you can do when you feel any of these symptoms is get some rest and sleep it off over the course of a few days.",
+         "The flu typically last around 5-7 days. Avoid getting the flu by getting seasonal vaccines."
+      ],
+      "symptomsList":[
+         "Fever",
+         "Chills",
+         "Cough",
+         "Headache",
+         "Fatigue",
+         "Nausea"
+      ],
+      "validTreatments":[
+         "water",
+         "acetaminophen",
+         "cough-drops",
+         "cold-pack"
+      ],
+      "patientStagesImages":[
+           ["SF1", ":Stages/SF1"],
+           ["SF2", ":Stages/SF2"],
+           ["SF3", ":Stages/SF3"],
+           ["SF4", ":Stages/SF4"],
+           ["H", ":/medicines/patient-basic"]
+      ],
+      "stepsImages":[
+           ["cold-pack", ":medicines/cold-pack"],
+           ["acetaminophen", ":medicines/acetaminophen"],
+           ["water", ":medicines/water"],
+           ["cough-drops", ":medicines/cough-drops"]
+      ],
+      "teachImages":[
+           ["water", ":medicines/water"],
+           ["cold-pack", ":medicines/cold-pack"]
+      ],
+      "medicineToStage":[
+           ["water", "SF2"],
+           ["acetaminophen", "SF3"],
+           ["cough-drops", "SF4"],
+           ["cold-pack", "H"]
+      ],
+      "inOrder": true
+   },
+   {
+      "title":"Stomach Ache",
+      "stepsText":[
+         "One of the main symptoms for a stomach ache is indigestion and gas. To combat this you can take an anti-gas medication such as Pepto Bismol. Pepto works by protecting your stomach and the lower part of your food pipe from stomach acid.",
+         "Make sure to drink water. Symptoms of stomach ache include diarieha and vomiting. It is important to stay hydrated so your body can better fight the flu.",
+         "Try putting a heating pad or hot towel on your abdomen. The heat can help relax the muscles and relieve cramping."
+      ],
+      "teachText":[
+         "BRAT Diet",
+         "It is important to keep your energy up when you are sick, but most of the time you won't feel like eating.",
+         "But it can be hard to determine what to eat after throwing up or having diarrhea.",
+         "A special diet known as the BRAT diet (Bananas, Rice, Applesauce, and Toast) is an effective way to treat both."
+        ],
+      "symptomsList":[
+         "Indigestion",
+         "Constipation",
+         "Feeling sick",
+         "Vomiting",
+         "Diarrhea",
+         "Food poisoning"
+      ],
+      "validTreatments":[
+         "pepto-bismol",
+         "water",
+         "hot-pack"
+      ],
+      "patientStagesImages":[
+           ["ST1", ":Stages/ST1"],
+           ["ST2", ":Stages/ST2"],
+           ["ST3", ":Stages/ST3"],
+           ["H", ":/medicines/patient-basic"]
+      ],
+      "stepsImages":[
+           ["pepto-bismol", ":medicines/pepto-bismol"],
+           ["water", ":medicines/water"],
+           ["hot-pack", ":medicines/hot-pack"]
+      ],
+      "teachImages":[
+           ["banana", ":Extra/banana"],
+           ["toast", ":Extra/toast"]
+      ],
+      "medicineToStage":[
+           ["pepto-bismol", "ST2"],
+           ["water", "ST3"],
+           ["hot-pack", "H"]
+      ],
+      "inOrder": true
+   },
+   {
+      "title":"Sunburn",
+      "stepsText":[
+         "Spreading aloe vera gel over the burnt skin can help reduce inflammation and prevent peeling.",
+         "Taking Ibuprofen provides temporary pain relief.",
+         "Drinking water helps replace body fluids and replenish electrolytes drawn to the skin’s surface by a sunburn."
+      ],
+      "teachText":[
+         "Sun Protection/Sunscreen",
+         "When the sun is out, one should always apply some sort of sun protection before going outside. Failing to apply sun protection can result in sunburn. Overtime, overexposure to to the sun can cause premature wrinkling, aging of skin, age spots, and an increased risk of skin cancer."
+      ],
+      "symptomsList":[
+         "Red/hot skin",
+         "Pain",
+         "Blisters",
+         "Swelling of skin",
+         "Faintness"
+      ],
+      "validTreatments":[
+         "aloe-vera",
+         "ibuprofen",
+         "water"
+      ],
+      "patientStagesImages":[
+           ["SB1", ":Stages/SB1"],
+           ["SB2", ":Stages/SB2"],
+           ["SB3", ":Stages/SB3"],
+           ["H", ":/medicines/patient-basic"]
+      ],
+      "stepsImages":[
+           ["ibuprofen", ":medicines/ibuprofen"],
+           ["aloe-vera", ":medicines/aloe-vera"],
+           ["water", ":medicines/water"]
+      ],
+      "teachImages":[
+           ["sunscreen", ":Extra/sunscreen"],
+           ["water", ":medicines/water"]
+      ],
+      "medicineToStage":[
+           ["none", "none"]
+      ],
+      "inOrder": false
    }
 ]
