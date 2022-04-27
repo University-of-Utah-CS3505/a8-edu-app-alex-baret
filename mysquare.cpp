@@ -21,6 +21,7 @@ MySquare::MySquare(std::string imagePath, std::string name , int initialX, int i
     this->height = height;
 
 
+    this->setToolTip(QString::fromStdString(name));
 }
 
 /**
