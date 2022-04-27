@@ -49,7 +49,8 @@
       "stepsText":[
          "Drinking water is vital to remedy a headache.",
          "A cold pack can help reduce headache.",
-           "Pain medication is helpful for temporary relief when you have a headache."
+           "Pain medication is helpful for temporary relief when you have a headache.",
+           "Acetaminophen or Ibuprofen will work."
       ],
       "teachText":[
          "Pain Medication",
@@ -77,9 +78,9 @@
            ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
-           ["ibuprofen", ":medicines/ibuprofen"],
-           ["cold-pack", ":medicines/cold-pack"],
            ["water", ":medicines/water"],
+           ["cold-pack", ":medicines/cold-pack"],
+           ["ibuprofen", ":medicines/ibuprofen"],
            ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "teachImages":[
@@ -175,9 +176,9 @@
            ["H", ":Stages/A4"]
       ],
       "stepsImages":[
-           ["mask", ":medicines/mask"],
            ["allergy", ":medicines/allergy"],
-           ["nasal-spray", ":medicines/nasal-spray"]
+           ["nasal-spray", ":medicines/nasal-spray"],
+           ["mask", ":medicines/mask"]
       ],
       "teachImages":[
            ["mask", ":medicines/mask"],
@@ -227,10 +228,10 @@
            ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
-           ["cold-pack", ":medicines/cold-pack"],
-           ["acetaminophen", ":medicines/acetaminophen"],
            ["water", ":medicines/water"],
-           ["cough-drops", ":medicines/cough-drops"]
+           ["acetaminophen", ":medicines/acetaminophen"],
+           ["cough-drops", ":medicines/cough-drops"],
+           ["cold-pack", ":medicines/cold-pack"]
       ],
       "teachImages":[
            ["water", ":medicines/water"],
@@ -247,7 +248,7 @@
    {
       "title":"Stomach Ache",
       "stepsText":[
-         "One of the main symptoms for a stomach ache is indigestion and gas. To combat this you can take an anti-gas medication such as Pepto Bismol. Pepto works by protecting your stomach and the lower part of your food pipe from stomach acid.",
+         "To combat indigestion you can take an anti-gas medication such as Pepto Bismol. Pepto works by protecting your stomach and the lower part of your food pipe from stomach acid.",
          "Make sure to drink water. Symptoms of stomach ache include diarieha and vomiting. It is important to stay hydrated so your body can better fight the flu.",
          "Try putting a heating pad or hot towel on your abdomen. The heat can help relax the muscles and relieve cramping."
       ],
@@ -322,8 +323,8 @@
            ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
-           ["ibuprofen", ":medicines/ibuprofen"],
            ["aloe-vera", ":medicines/aloe-vera"],
+           ["ibuprofen", ":medicines/ibuprofen"],
            ["water", ":medicines/water"]
       ],
       "teachImages":[
