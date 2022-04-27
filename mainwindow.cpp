@@ -36,24 +36,24 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     // ======== Create all inital 'treatments' ======== //
 
     //first shelf (left to right)
-    createTreatment("cold-pack", ":/medicines/cold-pack.png", 160, -85, 50, 62);
-    createTreatment("pepto-bismol", ":/medicines/pepto-bismol.png", 190, -85, 50, 62);
-    createTreatment("water", ":/medicines/water.png", 220, -85, 50, 62);
-    createTreatment("neosporin", ":/medicines/neosporin.png", 250, -85, 50, 62);
+    createTreatment("cold-pack", ":/medicines/cold-pack.png", 145, -87, 80, 80);
+    createTreatment("pepto-bismol", ":/medicines/pepto-bismol.png", 190, -105, 45, 110);
+    createTreatment("water", ":/medicines/water.png", 225, -87, 60, 70);
+    createTreatment("neosporin", ":/medicines/neosporin.png", 270, -92, 55, 80);
 
     //second shelf (left to right)
-      createTreatment("allergy" , ":/medicines/allergy.png" , 160, -20, 50, 62 );
-      createTreatment("aloe-vera",":/medicines/aloe-vera.png", 190, -20, 50, 62 );
-      createTreatment("bandage" , ":/medicines/bandage.png", 220, -20, 50, 62);
-      createTreatment("band-aid", ":/medicines/band-aid.png", 250, -20, 50, 62);
+      createTreatment("aloe-vera",":/medicines/aloe-vera.png", 145, -47, 50, 125 );
+      createTreatment("allergy" , ":/medicines/allergy.png" , 180, -25, 80, 80);
+      createTreatment("bandage" , ":/medicines/bandage.png", 230, -24, 65, 70);
+      createTreatment("band-aid", ":/medicines/band-aid.png", 270, -25, 60, 72);
     //third shelf (left to right)
       createTreatment("cough-drops", ":/medicines/cough-drops.png", 160, 35, 50, 62);
-      createTreatment("hot-pack", ":/medicines/hot-pack.png", 190, 35, 50, 62);
-      createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 220, 35, 50, 62);
-     createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 250, 35, 50, 62);
+      createTreatment("hot-pack", ":/medicines/hot-pack.png", 190, 35, 80, 80);
+      createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 230, 50, 40, 90);
+     createTreatment("ibuprofen", ":/medicines/ibuprofen.png", 250, 35, 70, 90);
       //fourth shelf (left to right)
-     createTreatment("nasel-spray", ":/medicines/nasel-spray.png", 160, 100, 50, 62);
-     createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 190, 100, 50, 62);
+     createTreatment("hydrogen-peroxide", ":/medicines/hydrogen-peroxide.png", 145, 120, 50, 125);
+     createTreatment("acetaminophen", ":/medicines/acetaminophen.png", 190, 100, 70, 90);
 
     // ======== Box2D initial settings ========
 
@@ -155,11 +155,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                mainModel,
                &Model::handleIncorrectAnswer);
        }
-
-    connect(ui->nextButton,
-            &QPushButton::clicked,
-            this,
-            &MainWindow::on_nextButton_clicked);
 
     connect(mainModel,
             &Model::loadUI,
@@ -350,6 +345,13 @@ void MainWindow::on_hintButton_clicked()
 
 void MainWindow::on_nextButton_clicked()
 {
+    ui->TeachPopup->hide();
+    clearLayout(ui->TeachPopup->layout());
+    delete ui->TeachPopup->layout();
+    clearLayout(ui->StepPopup->layout());
+    delete ui->StepPopup->layout();
+    clearLayout(ui->symptomsList->layout());
+    delete ui->symptomsList->layout();
     mainModel->loadNextLevel();
 }
 
@@ -444,6 +446,11 @@ void MainWindow::loadLevelUI(){
     teachPopLayout->addWidget(nextLBtn);
     teachPopLayout->setAlignment(nextLBtn, Qt::AlignHCenter);
 
+    connect(nextLBtn,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::on_nextButton_clicked);
+
     ui->TeachPopup->setLayout(teachPopLayout);
     // NEXT LEVEL BUTTON CONNECT
 
@@ -478,4 +485,19 @@ void MainWindow::toTeach(){
 
 void MainWindow::showPopup(){
     ui->StepPopup->show();
+}
+
+void MainWindow::clearLayout(QLayout* layout, bool deleteWidgets)
+{
+    while (QLayoutItem* item = layout->takeAt(0))
+    {
+        if (deleteWidgets)
+        {
+            if (QWidget* widget = item->widget())
+                widget->deleteLater();
+        }
+        if (QLayout* childLayout = item->layout())
+            clearLayout(childLayout, deleteWidgets);
+        delete item;
+    }
 }

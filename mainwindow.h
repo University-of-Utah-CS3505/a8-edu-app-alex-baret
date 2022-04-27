@@ -79,6 +79,7 @@ private:
     int32 positionIterations = 2;
 
     void toggleTreatmentCanDrop(bool checked);
+    void clearLayout(QLayout* layout, bool deleteWidgets = true);
 
 };
 #endif // MAINWINDOW_H

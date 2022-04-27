@@ -34,19 +34,6 @@
 border: 0px;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="nextButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>560</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Next Level</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="StepPopup" native="true">
     <property name="geometry">
      <rect>
@@ -94,7 +81,7 @@ border: 0px;</string>
      <x>0</x>
      <y>0</y>
      <width>1309</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

@@ -70,7 +70,7 @@ void Model::collisionDetectionFromCaller(MySquare* caller)
         else {
             std::cout << "   LEVEL FAILED" << std::endl;
             levelPassed->setText("Not quite! Here are the steps to solve.");
-            QTimer::singleShot(1000, this, &Model::EmitShowPop);
+            QTimer::singleShot(0000, this, &Model::EmitShowPop);
         }
     }
 

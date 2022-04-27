@@ -68,7 +68,7 @@
          "water",
          "cold-pack",
            "ibuprofen",
-	   "acetaminophen"
+           "acetaminophen"
       ],
       "patientStagesImages":[
 	   ["HA1", ":Stages/HA1"],
@@ -77,14 +77,14 @@
            ["H", ":/medicines/patient-basic"]
       ],
       "stepsImages":[
-	   ["ibuprofen", ":medicines/ibuprofen"],
+           ["ibuprofen", ":medicines/ibuprofen"],
 	   ["cold-pack", ":medicines/cold-pack"],
 	   ["water", ":medicines/water"],
-	   ["acetaminophen", ":medicines/acetaminophen"]
+           ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "teachImages":[
-	   ["ibuprofen", ":medicines/ibuprofen"],
-	   ["acetaminophen", ":medicines/acetaminophen"]
+           ["ibuprofen", ":medicines/ibuprofen"],
+           ["acetaminophen", ":medicines/acetaminophen"]
       ],
       "medicineToStage":[
 	   ["none", "none"]
