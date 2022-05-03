@@ -1,5 +1,21 @@
+/**
+ * 3505 A8 Education App
+ * Team Fresca (Alex, Alivia, Ian, Joey)
+ * 5/3/22
+ *
+ * gamereader.cpp
+ *
+ * File reader that converts JSON objects from LevelDataJson.txt to Level objects.
+ *
+ **/
+
 #include "gamereader.h"
 
+/**
+* Constructor for the GameReader. Determines if passed in filename is found. If it is found, it reads the file and parses the data.
+* @brief GameReader::GameReader
+* @param filename
+*/
 GameReader::GameReader(string filename)
 {
     QFile *file = new QFile(QString::fromStdString(filename));
@@ -12,11 +28,21 @@ GameReader::GameReader(string filename)
 
 }
 
+/**
+* Public function that returns a vector of pairs and Levels.
+* @brief GameReader::getLevels
+*/
 vector<pair<string, Level>> GameReader::getLevels()
 {
     return levelData;
 };
 
+
+/**
+* Method that parses file data and creates Level Objects
+* @brief GameReader::readFile
+* @param file - File passed in by constructor.
+*/
 void GameReader::readFile(QFile *file)
 {
     if( file->open( QIODevice::ReadOnly ) )
@@ -43,7 +69,7 @@ void GameReader::readFile(QFile *file)
                 vector<string> validTreatments; //ordered - based of inOrder : {"hot-pack", "ibuprofen", "band-aid", ..}
 
                 // Image Data
-                vector<pair<string, string>> patientStagesImages; // SP1 (sprained ankle) , QPixmap of SP1 image
+                vector<pair<string, string>> patientStagesImages; // SP1 (sprained ankle) , string of SP1 image
                 vector<pair<string, string>> stepsImages; // Medicine name, resource path of medicine
                 vector<pair<string, string>> teachImages; // Images to use on popup to teach subject (optional): Medicine name, resource path of medicine
 
@@ -125,7 +151,6 @@ void GameReader::readFile(QFile *file)
                     }
                 }
 
-                // Bool
                 if (readObj.contains("inOrder"))
                     inOrder = readObj.value("inOrder").toBool();
 
