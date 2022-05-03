@@ -1,3 +1,15 @@
+/**
+ * 3505 A8 Education App
+ * Team Fresca (Alex, Alivia, Ian, Joey)
+ * 5/3/22
+ *
+ * mysquare.cpp
+ *
+ * Custom QGraphicsObject will coordinate tracking and mouse clicking.
+ * Used as a Box2D body.
+ *
+ **/
+
 #include "mysquare.h"
 #include <iostream>
 
@@ -57,7 +69,6 @@ void MySquare::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
  */
 void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    //emit notifySceneToResize();
     pressed = true;
 
     update(); //forces object to repaint
@@ -71,7 +82,6 @@ void MySquare::mousePressEvent(QGraphicsSceneMouseEvent *event)
  */
 void MySquare::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-//    emit notifySceneToResize();
     pressed = false;
     update(); //forces object to repaint
     QGraphicsItem::mouseReleaseEvent(event);

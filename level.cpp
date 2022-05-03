@@ -1,3 +1,18 @@
+/**
+ * 3505 A8 Education App
+ * Team Fresca (Alex, Alivia, Ian, Joey)
+ * 5/3/22
+ *
+ * level.cpp
+ *
+ * Object that hold all level information for a level.
+ * Title
+ * Steps to Solve
+ * Symptoms
+ * Teach Text
+ *
+ **/
+
 #include "level.h"
 
 Level::Level(string _title, vector<string> _stepsText, vector<string> _teachText, vector<string> _symptomsList, vector<string> _validTreatments,

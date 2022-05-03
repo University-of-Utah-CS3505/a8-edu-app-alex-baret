@@ -1,3 +1,13 @@
+/**
+ *3505 A8 Education App
+ * Team Fresca (Alex, Alivia, Ian, Joey)
+ * 5/3/22
+ *
+ * mainwindow.cpp
+ *
+ * File reader that converts JSON objects from LevelDataJson.txt to Level objects.
+ **/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
@@ -119,8 +129,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     mainModel->currentTreatment.second = "empty";
 
     // ======== Connections between signals and slots ======== //
-
-
     //update world based off timer
     timer = new QTimer(this);
        connect(timer,
@@ -136,7 +144,6 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
                   this,
                   &MainWindow::setSceneSize);
           }
-
 
     //loop through the 'treatments' from main model, i.e mySquare objects,
     //and connect the singal with slot in mainwindow to move update the object's positions when they're moved
@@ -193,6 +200,10 @@ MainWindow::MainWindow(Model& model, QWidget *parent)
     ui->instructionsWidget->setLayout(instructionsLayout);
 }
 
+/**
+ * Destructor for MainWindow
+ * @brief MainWindow::~MainWindow
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -228,7 +239,7 @@ void MainWindow::createTreatment(std::string name , std::string imageLoc, int xL
 
 
 /**
- * Slot for update world.
+ * Slot that updates the world.  Updates Physics bodies throughout steps of the simulation.
  * @brief updateWorld
  * @param height
  */
@@ -338,13 +349,19 @@ void MainWindow::setSceneSize()
     scene->setSceneRect(sceneSize);
 }
 
-
+/**
+ * Button click slot for hint button.  Calls method to showHint.
+ * @brief MainWindow::on_hintButton_clicked
+ */
 void MainWindow::on_hintButton_clicked()
 {
     mainModel->showHint();
 }
 
-
+/**
+ * Button click slot for next level button.  Hides teach pop-up and calls loadNextLevel method.
+ * @brief MainWindow::on_nextButton_clicked
+ */
 void MainWindow::on_nextButton_clicked()
 {
     ui->TeachPopup->hide();
@@ -357,7 +374,10 @@ void MainWindow::on_nextButton_clicked()
     mainModel->loadNextLevel();
 }
 
-
+/**
+ * Adds relevant UI elements for each level.  Configures symptoms and teach pop-ups.
+ * @brief MainWindow::loadLevelUI
+ */
 void MainWindow::loadLevelUI(){
     Level *level = mainModel->currentLevel;
     stepsPopLayout = new QVBoxLayout();
@@ -480,15 +500,29 @@ void MainWindow::loadLevelUI(){
 
 }
 
+/**
+ * Slot that shows teach pop-up
+ * @brief MainWindow::toTeach
+ */
 void MainWindow::toTeach(){
     ui->StepPopup->hide();
     ui->TeachPopup->show();
 }
 
+/**
+ * Slot that shows steps pop-up
+ * @brief MainWindow::showPopup
+ */
 void MainWindow::showPopup(){
     ui->StepPopup->show();
 }
 
+/**
+ * Clears pop-up layouts so that new data can be set to the layouts of each pop-up.
+ * @brief MainWindow::clearLayout
+ * @param layout
+ * @param deleteWidgets
+ */
 void MainWindow::clearLayout(QLayout* layout, bool deleteWidgets)
 {
     while (QLayoutItem* item = layout->takeAt(0))

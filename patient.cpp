@@ -1,10 +1,22 @@
+/**
+ * 3505 A8 Education App
+ * Team Fresca (Alex, Alivia, Ian, Joey)
+ * 5/3/22
+ *
+ * patient.cpp
+ *
+ * Custom QGraphicsObject will coordinate tracking and mouse clicking.
+ * Used as a Box2D body.
+ *
+ **/
+
 #include "patient.h"
 #include <iostream>
 
 
 /**
  * Constructor for custom item.
- * @brief MySquare::MySquare
+ * @brief Patient::Patient
  */
 Patient::Patient(std::string imagePath, std::string name)
 {
@@ -18,7 +30,7 @@ Patient::Patient(std::string imagePath, std::string name)
 
 /**
  * Returns the boundaries of the custom shape.
- * @brief MySquare::boundingRect
+ * @brief Patient::boundingRect
  * @return
  */
 QRectF Patient::boundingRect() const
@@ -28,7 +40,7 @@ QRectF Patient::boundingRect() const
 
 /**
  * Paints the custom item.
- * @brief MySquare::paint
+ * @brief Patient::paint
  * @param painter
  * @param option
  * @param widget
